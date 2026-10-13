@@ -1,0 +1,39 @@
+/* User-supplied AI涨乐 screenshots. Text and quotes are reference fixtures, not live results. */
+window.themeExplorerData={
+ coal:{id:'coal',name:'煤炭',change:0.60,heat:92,listed:'09/30',days:15,cumulative:3.72,referenceCount:26,distribution:[20,4,2],etfCount:6,
+ title:'动力煤淡季破千元，冬储启动煤价上行',date:'10/13',
+ analysis:[['主要驱动','淡季动力煤突破千元，淡季不淡超预期。供给端受安监限产、大秦线检修、印尼配额约束，增量受限；需求端冬储提前启动，内陆库存明显抬升，供需偏紧支撑煤价高位运行。'],['可能影响','短期煤价对煤炭板块业绩形成正向催化。'],['关注方向','优先关注高长协占比、现金流稳健的龙头，弹性标的可博弈冬储旺季兑现。']],
+ stocks:[
+ {code:'601001',name:'晋控煤业',price:17.05,change:2.46,flow:'−406.55万',since:0.29,analysis:'山西动力煤采掘龙头，资产负债率低，现金流对利润覆盖近1.9倍，分红率约五成，多因子得分居前；政策推动山西产能恢复带来销量弹性，叠加煤价高位运行，盈利改善可期。'},
+ {code:'600546',name:'山煤国际',price:13.78,change:2.07,flow:'−436.96万',since:6.00,analysis:'煤焦储运一体化主业现金流扎实，分红率达…',partial:true},
+ {code:'601088',name:'中国神华',price:49.49,change:0.22,flow:'−5563.35万',since:4.63,tags:['估值较高','竞争格局好','护城河较深'],analysis:'煤电一体化全产业链龙头，行业排名第一，…',partial:true},
+ {code:'601898',name:'中煤能源',price:14.62,change:0.21,flow:'−510.01万',since:5.18,analysis:'央企动力煤龙头，长协履约优势突出，经营…',partial:true}
+ ],
+ etfs:[
+ {code:'515220',name:'煤炭ETF国泰',price:1.292,change:1.41,index:'中证煤炭指数'},
+ {code:'159945',name:'能源ETF广发',price:1.401,change:1.30,index:'中证全指能源指数'},
+ {code:'510410',name:'资源ETF博时',price:1.856,change:0.87,index:'上证自然资源指数'},
+ {code:'561260',name:'能源ETF工银',price:1.248,change:-0.24,index:'中证国新央企现代能源指数'},
+ {code:'562850',name:'央企能源ETF嘉实',price:1.262,change:-0.32,index:'中证国新央企现代能源指数'},
+ {code:'561790',name:'央企能源ETF博时',price:1.256,change:-0.48,index:'中证国新央企现代能源指数'}
+ ],
+ events:[
+ {id:'coal-price',date:'10/13',title:'动力煤淡季破千元，冬储启动煤价上行',sources:2,summary:'动力煤价格在淡季突破千元关口，创近两年新高。截至10月10日，秦皇岛港5500大卡动力煤平仓价报1003元/吨，同比增长42.27%。主产地及进口煤价同步走强，冬储补库需求启动，内陆十七省库存大增503万吨。'},
+ {id:'coal-supply',date:'09/18',title:'三部门联合部署煤炭安全稳产稳供 强调抓好产能接续建设',sources:3,summary:'国家发展改革委、国家能源局、国家矿山安监局联合印发通知，部署煤炭安全稳产稳供工作。通知要求各产煤省区和煤炭企业在确保安全前提下，全力做好稳产保供，持续抓好监测调度，优化生产组织，推进煤矿复产达产，加快联合试运转煤矿验收，推动产量平稳回升。通知还对电煤中长期合同签订履约、发挥进口补充调剂作用、推进煤炭接续产能建设提出要求。下一步将加强统筹协调，适时释放煤炭产能储备，稳定煤炭生产供应，促进市场平稳运行。政策强调安全为基、稳产为要、稳价兜底、结构优化，严禁“一刀切停产限产”，推动市场从紧平衡波动向动态稳定转型，晋陕蒙新四大核心产区成为提产主力，整体增量温和可控。'},
+ {id:'coal-plan',date:'08/10',title:'《煤炭工业发展“十五五”规划》印发',sources:6,summary:'国家发展改革委、国家能源局于2026年8月10日印发《煤炭工业发展“十五五”规划》。规划提出到2030年，全国大型现代化煤矿产能比重提升至87%，智能化煤矿产能比例提升至75%，现代煤炭产业体系基本建成。主要举措包括：提高资源开发准入标准，推动落后产能煤矿有序退出；有序推进煤炭资源开发，西部推进五大煤炭供应保障基地建设，2030年产量占全国比重超80%；加强产能总量调控，新增产能纳入产能“一本账”，严格执行产能置换政策；完善煤炭储备体系，到2030年建成产能储备1亿吨/年以上；深入实施“人工智能+”行动，加快研发推广煤炭领域专用大模型，推动危险繁重岗位机器人作业替代；加强煤炭关键技术装备研发，推动能源领域首台（套）重大技术装备落地应用；研究建立煤矿智能化行业标准化技术委员会。'},
+ {id:'coal-efficiency',date:'06/15',title:'重点行业节能降碳改造攻坚三年行动方案出炉',sources:4,summary:'6月15日，国家发展改革委等五部门发布《关于开展重点行业节能降碳改造攻坚三年行动的通知》，以钢铁、电解铝等9个行业为重点，用3年全面实施节能降碳改造。目标是到2028年底，工业重点行业达到现行能效标杆水平的产能比例平均提高10个百分点，煤炭行业力争提高15个百分点，基本清零能效基准水平以下产能，累计节能量1亿吨标准煤以上、减排二氧化碳2亿吨以上。通知细化部署了推广先进技术装备、工艺流程升级、促进能源消费绿色低碳转型等重点任务，并从资金支持、价格调节、市场化机制分配等方面加强政策保障。'},
+ {id:'coal-safety',date:'06/01',title:'山西开展煤矿安全专项整治，晋陕蒙豫主产区全面开展安全生产大检查。'},
+ {id:'coal-summer',date:'05/29',title:'国家发改委部署迎峰度夏能源保供工作。'},
+ {id:'coal-accident',date:'05/25',title:'山西留神峪煤矿瓦斯爆炸事故致多人伤亡。'},
+ {id:'coal-us',date:'04/21',title:'美国援引《国防生产法》签署煤炭相关备忘录，终止对煤炭行业限制、加速煤炭项目落地，全球煤炭供给预期收紧。'},
+ {id:'coal-acquisition',date:'04/14',title:'兖矿能源发布公告，控股子公司兖煤澳大利亚有限公司拟以最高24亿美元收购红隼集团100%权益，从而间接持有澳大利亚红隼煤矿80%权益。'},
+ {id:'coal-indonesia',date:'03/19',title:'印尼大幅下调2026年煤炭产量配额，煤炭总产量目标由7.9亿吨降至约6亿吨，首批获批约3.9–4亿吨。'},
+ {id:'coal-rail',date:'03/14',title:'我国西煤东运大通道、晋煤外运重载通道瓦日铁路开展为期17天的春季集中修，这是自线路开通以来工作量最大的一次施工作业。'},
+ {id:'coal-iran',date:'02/28',title:'美以联手袭击伊朗'},
+ {id:'coal-feb',date:'02/04',title:'2026年2月4日早盘，全球煤炭供给端收缩预期升温，海外煤价上行传导至国内，煤炭（核心股）板块集体大涨'},
+ {id:'coal-export',date:'02/03',title:'印尼矿业官员表示，由于印尼政府提出大幅减产计划，该国矿商已暂停现货煤炭出口'},
+ {id:'coal-quota',date:'01/08',title:'印尼能源与矿产资源部部长表示，2026年印尼政府将继续下调批准煤炭生产至6亿吨左右'}
+ ]},
+ pcb:{id:'pcb',name:'PCB',change:3.12,heat:99,listed:'09/29',days:15,cumulative:-6.26,etfCount:24,referenceCount:98,distribution:[83,13,2],title:'PCB行业年内定增293亿元，高端化扩产新周期开启',date:'09/27',analysis:[['截图解读摘录','据Wind统计，PCB行业年内定增募资近300亿元，投向集中在AI服务器、高速光模块、高阶HDI及封装基板等…']],partial:true,stocks:[{id:'pcb-hudian',name:'沪电股份',price:115.90,change:5.73},{id:'pcb-pengding',name:'鹏鼎控股',price:80.53,change:5.30},{id:'pcb-kingboard',name:'景旺电子',price:98.51,change:2.52}],etfs:[],events:[{id:'pcb-financing',date:'09/27',title:'PCB行业年内定增293亿元，高端化扩产新周期开启',summary:'据Wind统计，PCB行业年内定增募资近300亿元，投向集中在AI服务器、高速光模块、高阶HDI及封装基板等…',partial:true},{id:'pcb-plan',date:'09/15',title:'十五五聚焦PCB'},{id:'pcb-capacity',date:'09/11',title:'宏昌电子产能布局'},{id:'pcb-price',date:'08/28',title:'建滔年内七度涨价'}]},
+ 'optical-interconnect':{id:'optical-interconnect',name:'光模块',change:2.89,heat:95,listed:'08/05',days:70,cumulative:5.88,etfCount:5,referenceCount:31,distribution:[28,3,0],title:'DeepSeek启动科创板IPO筹备',date:'09/10',analysis:[['截图解读摘录','DeepSeek启动科创板IPO筹备，预计募资主要投向算力集群，高速光模块为万卡集群互联刚需，有望拉动…']],partial:true,stocks:[{code:'300394',name:'天孚通信',price:246.70,change:7.48},{id:'optical-yuanjie',name:'源杰科技',price:1163.00,change:3.64},{id:'optical-shijia',name:'仕佳光子',price:130.31,change:3.62}],etfs:[],events:[{id:'optical-ipo',date:'09/10',title:'DeepSeek启动科创板IPO筹备',summary:'DeepSeek启动科创板IPO筹备，预计募资主要投向算力集群，高速光模块为万卡集群互联刚需，有望拉动…',partial:true},{id:'optical-forecast',date:'09/08',title:'高盛光模块预测'},{id:'optical-earnings',date:'08/24',title:'中际旭创业绩大增'},{id:'optical-switch',date:'08/17',title:'英伟达交换机量产'}]}
+};

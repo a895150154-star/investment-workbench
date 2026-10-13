@@ -62,6 +62,7 @@ function opportunityEvents(themeId){
  if(themeId==='semiconductors')return [briefNews[2],briefNews[3]].map(n=>({...n,date:n.time,id:n.id,origin:'public'})).sort((a,b)=>b.date.localeCompare(a.date));
  if(themeId==='ai-applications')return [{...briefNews[1],date:briefNews[1].time,id:briefNews[1].id,origin:'public'}];
  if(themeId==='innovative-drugs')return [];
+ if(themeId!=='optical-interconnect')return [];
  return [
  ...briefItems.map(i=>({id:i.id,title:i.a.title,date:i.a.date,summary:i.summary,origin:'public'})).sort((a,b)=>b.date.localeCompare(a.date)),
  {id:'reference-ipo',title:'DeepSeek 启动科创板 IPO 筹备',date:'09/10 · 截图标注',summary:'参考截图将 AI 企业融资与算力建设预期联系起来。此处仅展示该资讯线索，尚未取得原始报道，不确认事件属实或相关公司受益。',origin:'reference'},

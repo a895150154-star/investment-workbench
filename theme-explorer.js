@@ -1,0 +1,71 @@
+/* One theme browser, one event history, and the existing quote/tracking destinations. */
+(() => {
+ 'use strict';
+ const fixtures=window.themeExplorerData;
+ const originalEvents=opportunityEvents;
+ const issueId=()=>route?.issueId||briefSnapshot().displayed.id;
+ const pct=v=>v==null?'—':`${v>0?'+':''}${Number(v).toFixed(2)}%`;
+ const change=v=>`<span class="te-change ${v>=0?'te-up':'te-down'}">${pct(v)}</span>`;
+ const key=q=>q.code||q.id;
+ const origin='<span class="te-origin">用户提供的 AI涨乐截图 · 历史参考内容</span>';
+ // Register identities in the existing quote catalog; never create a second quote page.
+ for(const t of Object.values(fixtures)){
+  for(const [kind,rows] of [['stock',t.stocks],['etf',t.etfs]])for(const row of rows){
+   const existing=opportunitySecurity(row.code||row.name);
+   if(existing){if(!row.code&&existing.code)row.code=existing.code;Object.assign(existing,{price:row.price,change:row.change,index:row.index||existing.index,reference:'theme-screenshot',source:'用户提供的 AI涨乐截图',asOf:'截图历史行情'});}
+   else opportunityQuotes.push({...row,type:kind,themeId:t.id,reference:'theme-screenshot',source:'用户提供的 AI涨乐截图',asOf:'截图历史行情'});
+  }
+  const previous=opportunityThemes.find(x=>x.id===t.id);
+  const mapped={id:t.id,name:t.name,tag:'热点主题',summary:t.title,read:t.analysis.map(x=>x[1]).join(''),stocks:t.stocks.map(key),etfs:t.etfs.map(key)};
+  if(previous)Object.assign(previous,mapped);else opportunityThemes.push(mapped);
+ }
+ // Restore only saved watch identities that are now known; do not create any new watches.
+ try{const saved=JSON.parse(localStorage.getItem(opportunityWatchKey)||'[]');if(Array.isArray(saved))opportunityWatch=[...new Set([...opportunityWatch,...saved.filter(k=>opportunitySecurity(k))])];}catch{}
+ function data(id){
+  if(fixtures[id])return fixtures[id];
+  const t=opportunityThemes.find(x=>x.id===id);if(!t)return null;
+  return {...t,title:t.summary,analysis:[['主题解读',t.read]],events:originalEvents(id),stocks:t.stocks.map(opportunitySecurity).filter(Boolean),etfs:t.etfs.map(opportunitySecurity).filter(Boolean),legacy:true};
+ }
+ const topics=()=>[...Object.values(fixtures),...opportunityThemes.filter(t=>!fixtures[t.id]).map(t=>data(t.id))];
+ const eventsFor=t=>[...t.events].sort((a,b)=>String(b.date).localeCompare(String(a.date)));
+ const themeRoute=t=>opThemeRoute(t.id,issueId());
+ const feedRoute=(t,item='')=>({type:'theme-feed',themeId:t.id,issueId:issueId(),mode:'hotspots',item});
+ const quoteLink=q=>opLink(esc(q.name),opQuoteRoute(key(q),issueId()),'te-security-name');
+ const price=q=>q.price==null?'—':Number(q.price).toFixed(q.type==='etf'||q.index?3:2);
+ function stats(t){return `<div class="te-stats">${t.cumulative!=null?`<div><span>上榜累计涨幅</span><strong>${change(t.cumulative)}</strong><small>${t.listed} 上榜</small></div>`:''}${t.heat!=null?`<div><span>主题热度</span><strong>${t.heat}<small>°</small></strong><small>截图记录</small></div>`:''}<div><span>关联个股</span><strong>${t.referenceCount??t.stocks.length}<small>只</small></strong><small>${t.referenceCount&&t.referenceCount!==t.stocks.length?`已录入截图中的 ${t.stocks.length} 只`:'已有资料'}</small></div><div><span>关联 ETF</span><strong>${t.etfCount??t.etfs.length}<small>只</small></strong><small>${t.etfCount&&t.etfCount!==t.etfs.length?'明细待补充':'可查看明细'}</small></div></div>`;}
+ function card(t,compact=false){return `<article class="te-topic-card ${compact?'te-compact':''}" data-theme-card="${t.id}"><header><h${compact?'3':'2'}>${opLink(esc(t.name),themeRoute(t),'te-topic-name')} ${change(t.change)}</h${compact?'3':'2'}>${t.days?`<span class="te-streak">连续上榜 ${t.days} 天</span>`:''}</header>${opLink(`<span>${esc(t.title)}</span><time>${esc(t.date||'')}</time>`,themeRoute(t),'te-topic-title')}${compact?'':`<p class="te-card-reading">${esc(t.analysis[0]?.[1]||'解读资料待补充')}</p>`}${compact?'':opLink(stats(t),themeRoute(t),'te-stats-link')}<div class="te-card-securities">${t.stocks.slice(0,3).map(q=>`<div>${quoteLink(q)}<span>${change(q.change)}<small>${price(q)}</small></span></div>`).join('')}</div>${compact?'':`<footer>${opLink('查看主题详情 '+icon('arrow-up-right'),themeRoute(t),'text-action')}</footer>`}</article>`;}
+ let themeFilter='all',query='';
+ function browse(r={}){
+  themeFilter=r.themeFilter||'all';query=r.themeQuery||'';
+  const list=topics().filter(t=>(themeFilter==='all'||t.id===themeFilter)&&(!query||[t.name,t.title,...t.stocks.map(q=>q.name+' '+(q.code||''))].join(' ').toLowerCase().includes(query.toLowerCase())));
+  page('事件捕手',opBack()+`<div class="te-browser"><header class="ed-page-head"><div><span class="ed-eyebrow">市场发现</span><h1>事件捕手</h1><p>从主题出发，读懂变化，找到关联标的。</p></div><a class="button" href="#/tracking?tab=tasks">${icon('bell')} 我的追踪</a></header><div class="ed-page-toolbar"><div class="ed-tabs" role="tablist" aria-label="事件捕手栏目"><button role="tab" aria-selected="false" data-ed-tab="events">驱动事件</button><button role="tab" aria-selected="true" class="selected" data-ed-tab="themes">热点主题</button></div><form id="teSearch" role="search"><label class="sr-only" for="teQuery">搜索主题或标的</label><input id="teQuery" placeholder="搜索主题或标的" value="${esc(query)}"><button aria-label="搜索热点主题">${icon('search')}</button></form></div><nav class="te-topic-filters" aria-label="主题筛选">${[{id:'all',name:'全部'},...topics()].map(t=>`<button data-te-filter="${t.id}" aria-pressed="${themeFilter===t.id}">${esc(t.name)}</button>`).join('')}</nav><p class="te-caption">煤炭、PCB、光模块沿用参考截图内容；其余主题沿用已有资料。</p><div class="te-topic-list">${list.length?list.map(t=>card(t)).join(''):'<div class="te-empty">没有匹配的主题。<button class="text-action" data-te-reset>查看全部主题</button></div>'}</div></div>`,'events');
+  route={type:'events',driverTab:'themes',driverScope:'all',themeFilter,themeQuery:query};markNav('radar');
+  $('#teSearch').onsubmit=e=>{e.preventDefault();allEvents({driverTab:'themes',themeFilter,themeQuery:$('#teQuery').value.trim()});};
+ }
+ function eventCards(t,full=false){return eventsFor(t).slice(0,full?undefined:3).map((e,i)=>`<article class="te-event" id="te-event-${esc(e.id)}"><time>${esc(e.date)}</time><div><h3>${full?esc(e.title):opLink(esc(e.title),feedRoute(t,e.id))}</h3>${e.summary?`<details ${i===0?'open':''}><summary>事件摘要</summary><p>${esc(e.summary)}</p>${e.partial?'<small class="te-caption">原截图摘要未完整展示</small>':''}</details>`:'<p class="te-caption">截图仅展示事件标题</p>'}<button class="text-action te-source-button" data-te-source="${t.id}|${e.id}">查看内容来源${e.sources?' · '+e.sources+' 份':''} ${icon('arrow-up-right')}</button></div></article>`).join('')||'<p class="te-empty">该主题的事件资料待补充。</p>';}
+ function stockRows(t){return t.stocks.map(q=>`<article class="te-stock" data-te-stock="${key(q)}"><div class="te-stock-line"><div>${quoteLink(q)}<small>${esc(q.code||'代码未提供')}</small></div><div>${change(q.change)}<small>${price(q)}</small></div><div class="te-stock-flow">${esc(q.flow||'—')}<small>主力净流入</small></div><div class="te-stock-since">${q.since==null?'—':change(q.since)}<small>上榜后涨幅</small></div><div class="te-stock-actions">${opWatch(opportunitySecurity(key(q)))}${q.code?`<button class="icon-button" data-te-track="${q.code}" aria-label="追踪${esc(q.name)}" title="设置标的追踪">${icon('bell')}</button>`:''}</div></div>${q.tags?`<div class="te-stock-tags">${q.tags.map(tag=>`<span>${esc(tag)}</span>`).join('')}</div>`:''}${q.analysis?`<details class="te-stock-analysis"><summary>关联逻辑与关注点 <span>${esc(q.analysis)}</span></summary><p>${esc(q.analysis)}</p>${q.partial?'<small class="te-caption">原截图文字未完整展开，以上为可见部分。</small>':''}</details>`:''}</article>`).join('')||'<p class="te-empty">关联个股资料待补充。</p>';}
+ function etfRows(rows){return `<div class="te-etf-list">${rows.map(q=>`<article class="te-etf"><div>${quoteLink(q)}<small>${esc(q.code||'代码未提供')} · 跟踪指数：${esc(q.index||'未提供')}</small></div><strong>${price(q)}</strong>${change(q.change)}${opWatch(opportunitySecurity(key(q)))}</article>`).join('')}</div>`;}
+ function detail(issue,filter='all',sort='relevance',retain=false,id='optical-interconnect'){
+  const t=data(id);if(!t)return;
+  const all=filter==='all';
+  const sections=`<nav class="te-section-tabs" aria-label="主题内容">${[['all','主题全览'],['stock','关联个股'],['etf','关联 ETF']].map(([f,label])=>opLink(label,{...opThemeRoute(t.id,issue.id),filter:f},filter===f?'selected':'')).join('')}</nav>`;
+  let body='';
+  if(all)body+=`<section class="te-section" id="te-events"><header><h2>主题事件</h2>${opLink('查看全部事件 '+icon('arrow-right'),feedRoute(t),'text-action')}</header><p class="te-caption">从最新动态回看主题历史</p>${eventCards(t)}</section><section class="te-section te-analysis"><header><h2>${icon('sparkles')} 主题解读</h2><span class="te-caption">${t.legacy?'沿用已有解读':'截图原文 · 按分析结构分段'}</span></header>${t.analysis.map(([label,text])=>`<div class="te-analysis-part"><h3>${esc(label)}</h3><p>${esc(text)}</p></div>`).join('')}${t.partial?'<p class="te-caption">原截图解读未完整展示，保留可见内容。</p>':''}</section>`;
+  if(filter!=='stock')body+=`<section class="te-section"><header><h2>关联 ETF <small>${t.etfCount??t.etfs.length} 只</small></h2>${t.etfs.length?opLink('查看全部 '+(t.etfs.length)+' 只 '+icon('arrow-right'),{type:'theme-etfs',themeId:id,issueId:issue.id,sort:'reference'},'text-action'):''}</header>${t.etfs.length?etfRows(t.etfs.slice(0,all?3:undefined)):'<p class="te-empty">参考资料未提供关联 ETF 明细。</p>'}</section>`;
+  if(filter!=='etf')body+=`<section class="te-section"><header><h2>关联个股 <small>${t.referenceCount??t.stocks.length} 只</small></h2>${t.distribution?`<span class="te-breadth">涨 / 跌 / 平 <b class="te-up">${t.distribution[0]}</b> / <b class="te-down">${t.distribution[1]}</b> / ${t.distribution[2]}</span>`:''}</header>${t.referenceCount&&t.referenceCount!==t.stocks.length?`<p class="te-caption">截图统计 ${t.referenceCount} 只，当前展示截图可见的 ${t.stocks.length} 只。</p>`:''}${stockRows(t)}</section>`;
+  page(t.name,opBack()+`<div class="te-detail"><header class="te-detail-head"><div><span class="ed-eyebrow">热点主题</span><h1>${esc(t.name)} ${change(t.change)}</h1><p>${esc(t.title)}</p></div>${t.days?`<span class="te-streak">${t.listed} 上榜 · 连续 ${t.days} 天</span>`:''}</header>${t.legacy?'':origin}${stats(t)}${sections}${body}</div>`,'brief-theme');route={type:'brief-theme',themeId:id,issueId:issue.id,filter,sort};
+ }
+ function feed(r){const t=data(r.themeId);if(!t)return;page(t.name+' · 主题事件',opBack()+`<div class="te-history"><header class="te-detail-head"><div><span class="ed-eyebrow">${esc(t.name)}</span><h1>主题事件</h1><p>按时间从新到旧，查看事件摘要与内容来源。</p></div></header>${t.legacy?'':origin}<section class="te-section">${eventCards(t,true)}</section></div>`,'theme-feed');route={...r,mode:'hotspots'};if(r.item){const target=$('#te-event-'+CSS.escape(r.item));if(target){target.classList.add('te-event-selected');const detail=target.querySelector('details');if(detail)detail.open=true;requestAnimationFrame(()=>target.scrollIntoView({block:'center'}));}}}
+ function etfs(r){const t=data(r.themeId);if(!t)return;const sort=r.sort||'reference';let rows=[...t.etfs];if(sort==='change-desc')rows.sort((a,b)=>b.change-a.change);if(sort==='change-asc')rows.sort((a,b)=>a.change-b.change);if(sort==='price-desc')rows.sort((a,b)=>b.price-a.price);const up=t.etfs.filter(q=>q.change>0).length,down=t.etfs.filter(q=>q.change<0).length;page(t.name+' · 关联 ETF',opBack()+`<div class="te-related"><header class="te-detail-head"><div><span class="ed-eyebrow">${esc(t.name)}</span><h1>关联 ETF</h1><p>查看跟踪指数与行情，选择关注的 ETF。</p></div></header>${t.legacy?'':origin}<div class="te-etf-stats"><span><strong>${t.etfs.length}</strong> 已录入 ETF</span><span><strong>${up} / ${down} / ${t.etfs.length-up-down}</strong> 涨 / 跌 / 平</span>${t.id==='coal'?'<span><strong>0</strong> T+0 数量 · 截图记录</span>':''}</div><section class="te-section"><header><h2>ETF 列表</h2><label class="te-sort">排序 <select id="teETFSort">${[['reference','截图顺序'],['change-desc','涨幅从高到低'],['change-asc','涨幅从低到高'],['price-desc','价格从高到低']].map(([v,l])=>`<option value="${v}" ${sort===v?'selected':''}>${l}</option>`).join('')}</select></label></header>${rows.length?etfRows(rows):'<p class="te-empty">关联 ETF 明细待补充。</p>'}</section></div>`,'theme-etfs');route={...r,sort};$('#teETFSort').onchange=e=>showRelatedETFs({...r,sort:e.target.value},true);}
+ function source(value){const [id,eventId]=value.split('|'),t=data(id),e=t?.events.find(x=>x.id===eventId);if(!e)return;
+  openModal('内容来源',`<h3>${esc(e.title)}</h3><p>${esc(e.date)} · ${t.legacy?'已有原型资料':'用户提供的 AI涨乐截图'}</p><p>${esc(e.summary||e.title)}</p>${e.sources?`<p>原截图标有 ${e.sources} 份内容来源。</p>`:''}<p class="te-caption">${t.legacy?'来源信息请以已提供资料为准。':'截图未提供原文标题清单和网址，暂不能打开原文。这里保留截图中的摘要，不补造来源链接。'}</p>`,'资料依据');
+ }
+ window.themeExplorer={browse,homeCards:()=>[fixtures.coal,fixtures.pcb].map(t=>card(t,true)).join(''),data};
+ const previousBrowse=showOpportunities;
+ showOpportunities=function(r={},retain=false){if(!r.tab||r.tab==='themes')return allEvents({driverTab:'themes',themeQuery:r.query||''});return previousBrowse(r,retain);};
+ showBriefTheme=detail;showThemeFeed=feed;showRelatedETFs=etfs;
+ opportunityEvents=function(id){return fixtures[id]?eventsFor(fixtures[id]):originalEvents(id);};
+ const previousName=opportunityRouteName;opportunityRouteName=function(r){if(r.type==='theme-feed')return data(r.themeId).name+' · 主题事件';return previousName(r);};
+ const previousFallback=opportunityFallback;opportunityFallback=function(r){if(r.type==='brief-theme')return {type:'events',driverTab:'themes',driverScope:'all'};return previousFallback(r);};
+ document.addEventListener('click',e=>{const b=e.target.closest('[data-te-filter],[data-te-reset],[data-te-source],[data-te-track]');if(!b)return;if(b.dataset.teFilter)allEvents({driverTab:'themes',themeFilter:b.dataset.teFilter,themeQuery:query});if(b.hasAttribute('data-te-reset'))allEvents({driverTab:'themes'});if(b.dataset.teSource)source(b.dataset.teSource);if(b.dataset.teTrack)trackingCenter.configure(b.dataset.teTrack,!trackingCenter.entries().some(row=>row.key===b.dataset.teTrack));});
+})();
