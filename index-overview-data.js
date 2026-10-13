@@ -1,0 +1,45 @@
+/* Transcribed user reference values. No live feed; dates and synchronized timestamps unknown. */
+const indexOverviewData={
+  common:['sse','szse','bse','starall','chinext','hsi','hstech','dow','nasdaq','sp500','gold','oil'],
+  quotes:[
+    {id:'sse',name:'上证指数',value:'3918.52',change:'−18.00',percent:'−0.46%',group:'china',source:4},
+    {id:'szse',name:'深证成指',value:'13480.25',change:'−155.82',percent:'−1.14%',group:'china',source:4},
+    {id:'bse',name:'北证50',value:'1067.19',change:'−6.85',percent:'−0.64%',group:'china',source:4},
+    {id:'starall',name:'科创综指',value:'1944.24',change:'−24.26',percent:'−1.23%',group:'china',source:3},
+    {id:'chinext',name:'创业板指',value:'3341.70',change:'−37.91',percent:'−1.12%',group:'china',source:4},
+    {id:'csi300',name:'沪深300',value:'4478.83',change:'−38.45',percent:'−0.85%',group:'china',source:4},
+    {id:'star50',name:'科创50',value:'1640.08',change:'−20.77',percent:'−1.25%',group:'china',source:4},
+    {id:'hsi',name:'恒生指数',value:'24754.91',change:'−79.21',percent:'−0.32%',group:'global',region:'asia',source:4},
+    {id:'hstech',name:'恒生科技指数',value:'4353.24',change:'−25.83',percent:'−0.59%',group:'global',region:'asia',source:3},
+    {id:'hscei',name:'恒生中国企业指数',value:'8263.66',change:'−10.15',percent:'−0.12%',group:'global',region:'asia',source:4},
+    {id:'nikkei',name:'日经225',value:'66037.82',change:'+1018.87',percent:'+1.57%',group:'global',region:'asia',source:4},
+    {id:'ftse',name:'英国富时100',value:'10705.26',change:null,percent:'−0.03%',group:'global',region:'europe',closed:true,source:4},
+    {id:'dax',name:'德国DAX',value:'25410.63',change:null,percent:'−0.66%',group:'global',region:'europe',closed:true,source:4},
+    {id:'euro50',name:'欧洲50',value:'6299.82',change:null,percent:'−0.39%',group:'global',region:'europe',closed:true,source:4},
+    {id:'dow',name:'道琼斯工业',value:'51511.59',change:null,percent:'−0.68%',group:'global',region:'americas',closed:true,source:4},
+    {id:'nasdaq',name:'纳斯达克',value:'26936.04',change:null,percent:'−1.13%',group:'global',region:'americas',closed:true,source:4},
+    {id:'sp500',name:'标普500',value:'7706.03',change:null,percent:'−0.75%',group:'global',region:'americas',closed:true,source:4},
+    {id:'gold',name:'COMEX黄金',value:'4309.10',change:'−9.30',percent:'−0.22%',group:'commodities',source:5},
+    {id:'oil',name:'NYMEX轻质原油',value:'91.95',change:'−0.21',percent:'−0.23%',group:'commodities',source:5},
+    {id:'dxy',name:'美元指数',value:'100.91',change:'+0.10',percent:'+0.10%',group:'commodities',source:5},
+    {id:'copper',name:'LME铜',value:'14783.00',change:'+118.50',percent:'+0.81%',group:'commodities',source:5},
+    {id:'zinc',name:'LME锌',value:'3911.50',change:'−14.00',percent:'−0.36%',group:'commodities',source:5},
+    {id:'a50',name:'SGX A50指数期货',value:'14445.00',change:'−89.00',percent:'−0.61%',group:'commodities',source:5},
+    {id:'silver',name:'COMEX白银',value:'64.35',change:'−0.61',percent:'−0.94%',group:'commodities',source:5},
+    {id:'corn',name:'CBOT玉米',value:'529.50',change:'+0.50',percent:'+0.09%',group:'commodities',source:5},
+    {id:'soy',name:'CBOT大豆',value:'1319.75',change:'+1.75',percent:'+0.13%',group:'commodities',source:5},
+    {id:'eurusd',name:'欧元 → 美元',value:'1.1371',change:null,percent:'−0.09%',group:'fx',source:5},
+    {id:'usdjpy',name:'美元 → 日元',value:'157.9120',change:null,percent:'−0.22%',group:'fx',source:5},
+    {id:'gbpusd',name:'英镑 → 美元',value:'1.3227',change:null,percent:'−0.08%',group:'fx',source:5},
+    {id:'audusd',name:'澳元 → 美元',value:'0.7022',change:null,percent:'−0.16%',group:'fx',source:5},
+    {id:'usdchf',name:'美元 → 瑞郎',value:'0.8253',change:null,percent:'+0.02%',group:'fx',source:5},
+    {id:'usdhkd',name:'美元 → 港币',value:'7.8422',change:null,percent:'0.00%',group:'fx',source:5}
+  ],
+  sources:[
+    {id:1,ext:'png',title:'首页指数卡片 · 第一屏',note:'用于六宫格与迷你走势布局参考，首页报价统一使用详情资料记录。'},
+    {id:2,ext:'png',title:'首页指数卡片 · 第二屏',note:'用于常用指数翻页布局参考，未将不同截图拼为同步实时行情。'},
+    {id:3,ext:'jpg',title:'全球地图与常用指数',note:'原图显示手机时间 10:16，交易日期未知。科创综指和恒生科技指数取自本图。'},
+    {id:4,ext:'jpg',title:'A 股与全球指数',note:'本模块 A 股与全球指数主要取自本图；同一标的在首页与详情保持一致。闭市标签仅为原图状态。'},
+    {id:5,ext:'jpg',title:'商品与重要外汇',note:'商品、美元指数与外汇取自本图。商品合约月份和计价单位未提供，保留原图报价。'}
+  ]
+};

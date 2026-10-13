@@ -1,0 +1,21 @@
+.brief-personal-relation{margin:10px 0 12px!important;padding:10px 12px;border-radius:5px;background:var(--orange-soft);color:var(--text);font-size:12px!important;line-height:1.75!important;overflow-wrap:anywhere}
+.brief-personal-relation strong,.brief-personal-focus strong{display:block;margin-bottom:3px;font-size:12px;color:var(--text)}
+.brief-reason-tag{display:inline-flex;align-items:center;padding:2px 6px;border:1px solid var(--line);border-radius:4px;background:var(--bg);color:var(--muted);font-size:11px;font-weight:400;line-height:1.5;white-space:nowrap}
+.brief-cover-company .brief-reason-tag{margin-left:8px}
+.brief-personal-relation summary{cursor:pointer;font-size:12px;color:var(--muted)}
+.brief-personal-relation[open] summary{margin-bottom:10px}
+.brief-personal-relation ul{margin:0;padding:0;list-style:none}
+.brief-personal-relation li+li{margin-top:8px}
+.brief-personal-relation p{margin:10px 0 0!important;font-size:12px!important;line-height:1.75!important}
+.brief-personal-focus{font-size:13px;line-height:1.8;color:var(--muted);margin:12px 0}
+.report-analysis>.brief-personal-focus{padding-bottom:12px;border-bottom:1px solid var(--line)}
+.brief-personal-intro{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:10px 0 14px}
+.brief-personal-intro p{margin:0!important;color:var(--muted);font-size:12px!important}
+.brief-personal-intro .brief-focus-current{display:block;margin-bottom:6px;font-size:14px;color:var(--text)}
+.brief-personal-intro p+p{margin-top:5px!important}
+.brief-personal-intro button{flex-shrink:0}
+.brief-other-materials{margin-top:18px;border-top:1px solid var(--line);padding-top:16px}
+.brief-other-materials>summary{cursor:pointer;font-weight:600;font-size:13px;padding:8px 0}
+.brief-personal-boundary,.brief-personal-empty{font-size:12px!important;line-height:1.75;color:var(--muted)}
+.brief-personal-boundary{margin-top:18px!important}
+@media(max-width:700px){.brief-personal-intro{display:block}.brief-personal-intro button{margin-top:10px}}

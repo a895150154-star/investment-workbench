@@ -1,0 +1,29 @@
+/* Content hierarchy only: retains the existing typography and palette. */
+.brief-editorial-opening{padding:17px 18px;background:var(--card-raised);border:1px solid var(--line);border-radius:8px;margin:16px 0 25px;}
+.brief-editorial-opening>strong{font-size:12px;color:var(--orange);font-weight:550;}
+.brief-editorial-opening p{font-size:13px;line-height:1.9;color:var(--text);margin:9px 0;}
+.brief-editorial-opening .text-action{margin-top:7px;}
+.report-editorial-read{background:var(--card-raised);padding:9px 12px;border-radius:5px;}
+.report-editorial-read strong{font-size:11px;font-weight:500;color:var(--orange);margin-right:6px;}
+.editorial-runtime-note{font-size:10px;color:var(--subtle);line-height:1.8;margin:18px 0 4px;}
+.editorial-answer-links{display:flex;flex-wrap:wrap;gap:10px;margin:15px 0;font-size:11px;color:var(--orange);}
+.editorial-stock-name{font-size:11px;font-weight:500;display:inline-flex;align-items:center;min-height:30px;}
+.editorial-stock-name:hover{color:var(--orange);}
+.stock-row>span.editorial-down{color:var(--green);}.stock-row>span.editorial-up{color:var(--red);}
+.editorial-inline-label{font-size:10px;color:var(--red);background:color-mix(in srgb,var(--red) 9%,transparent);border:1px solid color-mix(in srgb,var(--red) 20%,transparent);border-radius:3px;padding:1px 5px;margin-right:6px;}
+.editorial-market h3{font-size:14px;font-weight:550;line-height:1.8;margin:6px 0 10px;}
+.editorial-market p{font-size:12px;line-height:1.9;color:var(--muted);margin:8px 0 14px;}
+.editorial-market>.text-action{margin:8px 0;display:flex;}
+.editorial-sectors>div{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid var(--line-soft);}
+.editorial-sectors span{font-size:11px;color:var(--muted);}.editorial-sectors .flow-title-link{font-size:13px;white-space:nowrap;}
+@media(max-width:720px){.editorial-stock-name{min-height:44px;}.brief-editorial-opening{padding:14px;}.editorial-sectors>div{align-items:flex-start;}}
+
+/* Longer reasoning reuses the existing report typography and palette. */
+.brief-cover-followup{font-size:11px;line-height:1.8;color:var(--muted);margin:10px 0 0;}
+.brief-cover-followup strong{color:var(--text);font-weight:500;margin-right:6px;}
+.report-featured-name{font-size:17px;font-weight:550;}
+.report-company-divider{font-size:14px;font-weight:550;margin:28px 0 0;color:var(--muted);}
+.report-analysis>p+p{padding-top:12px;border-top:1px solid var(--line-soft);}
+#modalBody .report-analysis{margin:18px 0;}
+#modalBody .report-analysis p{font-size:13px;line-height:1.9;}
+#modalBody .report-analysis>button{min-height:44px;}

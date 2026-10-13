@@ -1,0 +1,61 @@
+.report-event-title{color:inherit;text-decoration:none;}.report-event-title:hover,.report-event-title:focus-visible{color:var(--orange);}
+.event-detail{max-width:880px;margin:20px auto 50px;background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;}
+.event-detail-head{padding:32px 38px 26px;border-bottom:1px solid var(--line);}
+.event-detail-head h1{font-size:26px;line-height:1.45;letter-spacing:-.02em;margin:12px 0 18px;}
+.event-detail-meta{display:flex;gap:12px;align-items:center;flex-wrap:wrap;color:var(--muted);font-size:12px;}
+.event-detail-section{padding:24px 38px;border-bottom:1px solid var(--line-soft);}
+.event-detail-section h2,.event-detail-track h2{font-size:17px;margin:0 0 12px;}
+.event-detail-section h3{font-size:13px;margin:20px 0 8px;}
+.event-detail-section p,.event-detail-track p{font-size:13px;line-height:1.85;margin:0;color:var(--muted);}
+.event-related{display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+.event-related>span,.event-related-link{font-size:14px;font-weight:600;color:var(--text);}
+.event-related small{font-size:11px;color:var(--subtle);}
+.event-detail-track{padding:28px 38px 34px;background:var(--card-raised);}
+.event-track-copy .eyebrow{display:block;margin-bottom:8px;}
+.event-track-status{display:flex;align-items:center;gap:12px;padding:14px 16px;border:1px solid color-mix(in srgb,var(--green) 35%,var(--line));border-radius:9px;margin-top:20px;background:color-mix(in srgb,var(--green) 7%,var(--card));}
+.event-track-dot{width:8px;height:8px;border-radius:50%;background:var(--green);flex:none;}
+.event-track-status>div{display:grid;gap:4px;flex:1;min-width:0;}
+.event-track-status strong{font-size:13px;}.event-track-status small{font-size:11px;color:var(--muted);}
+.event-track-status button{border:0;background:none;color:var(--orange);cursor:pointer;font:inherit;font-size:11px;}
+.event-detail-actions{display:flex;gap:10px;flex-wrap:wrap;margin:22px 0 12px;}
+.event-track-form{display:grid;gap:14px;margin:20px 0;}.event-track-form .button{justify-self:start;}
+.trigger-body{min-height:220px;}.trigger-section-head{display:flex;justify-content:space-between;gap:12px;align-items:baseline;margin:20px 0 8px;}
+.trigger-section-head h3{font-size:13px;margin:0;}.trigger-section-head small{font-size:10px;color:var(--subtle);}
+.trigger-entry{border:1px solid var(--line);background:var(--card-raised);border-radius:8px;padding:14px 16px;margin-bottom:10px;}
+.trigger-entry h3{font-size:12px;line-height:1.55;margin:9px 0 6px;}.trigger-entry p{font-size:11px;line-height:1.7;color:var(--muted);margin:0 0 10px;}.trigger-entry .text-action{font-size:11px;}
+@media(max-width:720px){.event-detail{margin:12px 0 32px;border-radius:10px;}.event-detail-head,.event-detail-section,.event-detail-track{padding-left:18px;padding-right:18px;}.event-detail-head h1{font-size:21px;}.event-track-status{align-items:flex-start;}.event-track-status button{align-self:center;}.event-track-form .button{justify-self:stretch;}}
+/* Scope-aware forms share the accepted tokens in both themes. */
+.event-track-form{gap:8px}.event-track-form .field{margin:9px 0}.event-track-form input{min-width:0}
+.event-scope-locked{border:1px solid var(--line);border-left:3px solid var(--orange);border-radius:8px;padding:13px 14px;background:var(--card)}
+.event-scope-locked>span{display:block;font-size:10px;color:var(--orange);margin-bottom:7px}.event-scope-locked>strong{display:block;font-size:12px;line-height:1.8;color:var(--text);overflow-wrap:anywhere}.event-scope-locked>p{color:var(--muted);font-size:11px;line-height:1.7;margin:9px 0 0}
+.event-scope-preview{border-radius:8px;background:var(--orange-soft);border:1px solid var(--line);padding:12px 14px;margin:10px 0;color:var(--muted)}.event-scope-preview>strong{font-size:11px;color:var(--text)}.event-scope-preview>p{font-size:11px;line-height:1.8;margin:7px 0 0;overflow-wrap:anywhere}
+.event-track-form .flow-error:empty{display:none}
+
+/* V2.55: two editable reminder settings, fixed event context. */
+.event-simple-form{gap:20px;margin-top:22px}
+.event-track-summary{padding:18px;border:1px solid var(--line);border-radius:10px;background:var(--card-raised)}
+.event-setting-label,.event-frequency legend{color:var(--muted);font-size:12px}
+.event-fixed-stocks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 18px}
+.event-fixed-stocks>div{padding:10px 14px;background:var(--card);border:1px solid var(--line);border-radius:7px}
+.event-fixed-stocks strong{font-size:14px;display:block}.event-fixed-stocks small{display:block;color:var(--muted);font-size:11px;margin-top:4px}
+.event-fixed-condition{border-top:1px solid var(--line);padding-top:14px}
+.event-fixed-condition p{font-size:13px;line-height:1.8;margin:8px 0 0;overflow-wrap:anywhere}
+.event-frequency{border:0;padding:0;margin:0;display:flex;gap:8px;min-width:0}
+.event-frequency legend{padding:0;margin-bottom:10px}
+.event-frequency label{flex:1;position:relative;cursor:pointer}
+.event-frequency input{position:absolute;opacity:0;width:1px;height:1px}
+.event-frequency span{display:block;text-align:center;border:1px solid var(--line);border-radius:7px;padding:10px 5px;font-size:13px;background:var(--card)}
+.event-frequency input:checked+span{border-color:var(--orange);color:var(--orange);background:color-mix(in srgb,var(--orange) 7%,var(--card))}
+.event-frequency input:focus-visible+span{outline:2px solid var(--orange);outline-offset:3px}
+.event-method>span{display:block;margin-bottom:10px}
+.event-method>button{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;padding:12px;border:1px solid var(--line);border-radius:7px;background:var(--card);color:var(--text);font:inherit;font-size:13px;text-align:left;cursor:pointer}
+.event-method svg{width:16px;height:16px;flex:none}
+.event-simple-form .flow-actions{margin:0;display:flex}.event-simple-form .flow-actions .primary{flex:1;justify-content:center}
+.event-demo-note{font-size:11px;color:var(--muted);line-height:1.7;margin:0}
+.event-channel-options{border:0;margin:0 0 22px;padding:0}
+.event-channel-options label{display:flex;align-items:center;gap:12px;padding:18px 2px;border-bottom:1px solid var(--line);cursor:pointer;font-size:14px}
+.event-channel-options input{accent-color:var(--orange);width:17px;height:17px;flex:none}
+.event-saved-settings{display:grid;gap:7px;padding:14px;background:var(--card-raised);border:1px solid var(--line);border-radius:8px;font-size:13px;margin:18px 0}
+
+.assistant:has(.event-simple-form,.event-saved-settings) .composer{display:none}
+.assistant:has(.event-simple-form,.event-saved-settings) .assistant-scroll{flex:1}

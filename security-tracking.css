@@ -1,0 +1,23 @@
+.security-bell.is-tracking{color:var(--green);border-color:color-mix(in srgb,var(--green) 45%,var(--line));background:color-mix(in srgb,var(--green) 7%,var(--card))}
+.security-track-status{padding:20px 24px;margin:0 0 22px;border:1px solid var(--line);border-radius:10px;background:var(--card)}
+.security-track-top{display:flex;align-items:center;gap:14px;flex-wrap:wrap}.security-track-top>div{flex:1;min-width:180px}.security-track-top h2{font-size:16px;margin:5px 0 9px}.security-track-top h2 small{font-size:11px;color:var(--subtle);font-weight:400}
+.security-track-status p{font-size:11px;color:var(--muted);line-height:1.8}.security-track-status ul{padding-left:18px;font-size:12px;line-height:1.9;margin:6px 0 12px}
+.security-boundary{font-size:10px!important;color:var(--subtle)!important;line-height:1.8;margin:10px 0!important}
+.security-categories{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin:18px 0 12px;padding:4px;background:var(--bg);border:1px solid var(--line);border-radius:7px}.security-categories button{font-size:11px;padding:7px 0;border-radius:4px;color:var(--muted)}.security-categories button[aria-pressed=true]{background:var(--orange-soft);color:var(--orange);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--orange) 35%,transparent)}
+.security-rule{border:1px solid var(--line);border-radius:8px;margin:8px 0;padding:11px;background:var(--card)}.security-rule.selected{border-color:color-mix(in srgb,var(--orange) 50%,var(--line))}.security-rule-label{display:flex;gap:8px;align-items:flex-start;font-size:11px;cursor:pointer}.security-rule-label input{margin:3px 0;flex:none}.security-rule small{display:block;font-size:10px;color:var(--subtle);line-height:1.7;margin-top:7px}.security-threshold.field{margin:12px 0 0}.security-track-form .field input,.security-track-form .field select{font-size:11px;min-width:0}.security-selection{margin-top:16px;padding:12px;background:var(--orange-soft);border-radius:7px}.security-selection strong{font-size:11px;font-weight:500}.security-selection ul,.security-saved-summary{font-size:11px;color:var(--muted);line-height:1.8;padding-left:17px;margin:7px 0 0;overflow-wrap:anywhere}.security-form-actions{display:grid;grid-template-columns:1fr auto;gap:8px;margin-top:16px}.security-track-form .flow-error:empty{display:none}.security-track-form .flow-error{margin-top:12px}.security-tracked-list{border-top:1px solid var(--line-soft);margin-top:18px}.security-track-top .text-action{font-size:11px}
+@media(max-width:720px){.security-track-status{padding:16px}.security-track-top{gap:10px}.security-track-top>div{flex-basis:100%}}
+
+/* V2.56: compact selected conditions; the full library is a separate dialog. */
+.bell-security{display:grid;gap:5px;margin:16px 0}.bell-security strong{font-size:17px}.bell-security span{font-size:12px;color:var(--muted)}
+.bell-simple-form{display:grid;gap:14px;margin-top:22px}.bell-simple-form .field{margin:0}.bell-simple-form .field select{font-size:14px}
+.bell-section-head{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:14px}.bell-section-head small{font-size:12px;font-weight:400;color:var(--muted)}
+.bell-selected-row{display:flex;align-items:center;gap:8px;padding:13px 0;border-bottom:1px solid var(--line)}
+.bell-selected-row label{display:flex;align-items:flex-start;gap:9px;flex:1;min-width:0;font-size:14px;line-height:1.65;cursor:pointer}.bell-selected-row input{margin:5px 0 0;accent-color:var(--orange);flex:none}.bell-selected-row button{flex:none}
+.bell-help{font-size:12px;color:var(--muted);margin:0;line-height:1.7}.bell-simple-form .security-form-actions{margin:4px 0}
+.bell-picker-security{font-size:16px;font-weight:600;margin:0}.bell-picker-security span{font-size:12px;font-weight:400;color:var(--muted);margin-left:7px}
+#bellConditionForm .security-categories button,#bellConditionForm .security-rule-label{font-size:14px}#bellConditionForm .security-rule small{font-size:12px}
+#bellConditionForm .security-rule-label input{accent-color:var(--orange);margin-top:4px}#bellConditionForm .security-threshold input{font-size:14px;width:100%}
+.bell-picker-footer{display:flex;align-items:center;justify-content:space-between;gap:12px;position:sticky;bottom:0;padding-top:14px;background:var(--card)}.bell-picker-footer>span{color:var(--muted);font-size:12px}.bell-picker-footer .flow-actions{margin:0}
+.assistant:has(.bell-simple-form) .composer{display:none}.assistant:has(.bell-simple-form) .assistant-scroll{flex:1}
+.security-saved-summary{font-size:14px;line-height:1.8}
+@media(max-width:480px){.bell-picker-footer{align-items:flex-start;flex-direction:column}.bell-picker-footer .flow-actions{width:100%}.bell-picker-footer .primary{flex:1}}

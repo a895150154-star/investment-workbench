@@ -1,0 +1,228 @@
+/* User-provided reference screenshots; not live or independently verified. */
+const opportunityReferenceQuotes=[
+  {
+    "code": "159363",
+    "name": "创业板人工智能ETF华宝",
+    "price": "1.291",
+    "change": "+0.70",
+    "index": "创业板人工智能指数",
+    "type": "etf",
+    "source": "用户提供竞品截图",
+    "reference": "etfs",
+    "asOf": null,
+    "note": "报价时点未标明；仅为截图参考值，未独立核验。"
+  },
+  {
+    "code": "515980",
+    "name": "人工智能ETF华富",
+    "price": "1.038",
+    "change": "+0.68",
+    "index": "中证人工智能产业指数",
+    "type": "etf",
+    "source": "用户提供竞品截图",
+    "reference": "etfs",
+    "asOf": null,
+    "note": "报价时点未标明；仅为截图参考值，未独立核验。"
+  },
+  {
+    "code": "159381",
+    "name": "创业板人工智能ETF（159381，截图简称）",
+    "price": "1.222",
+    "change": "+0.58",
+    "index": "创业板人工智能指数",
+    "type": "etf",
+    "source": "用户提供竞品截图",
+    "reference": "etfs",
+    "asOf": null,
+    "note": "报价时点未标明；仅为截图参考值，未独立核验。"
+  },
+  {
+    "code": "159388",
+    "name": "创业板人工智能ETF（159388，截图简称）",
+    "price": "1.056",
+    "change": "+0.57",
+    "index": "创业板人工智能指数",
+    "type": "etf",
+    "source": "用户提供竞品截图",
+    "reference": "etfs",
+    "asOf": null,
+    "note": "报价时点未标明；仅为截图参考值，未独立核验。"
+  },
+  {
+    "code": "515050",
+    "name": "通信ETF华夏",
+    "price": "1.079",
+    "change": "-0.19",
+    "index": "中证5G通信主题指数",
+    "type": "etf",
+    "source": "用户提供竞品截图",
+    "reference": "etfs",
+    "asOf": null,
+    "note": "报价时点未标明；仅为截图参考值，未独立核验。"
+  },
+  {
+    "code": "159507",
+    "name": "通信ETF广发",
+    "price": "0.920",
+    "change": "-0.65",
+    "index": "国证通信指数",
+    "type": "etf",
+    "source": "用户提供竞品截图",
+    "reference": "etfs",
+    "asOf": null,
+    "note": "报价时点未标明；仅为截图参考值，未独立核验。"
+  },
+  {
+    "code": "159695",
+    "name": "通信ETF嘉实",
+    "price": "1.007",
+    "change": null,
+    "index": "国证通信指数",
+    "type": "etf",
+    "source": "用户提供竞品截图",
+    "reference": "etfs",
+    "asOf": null,
+    "note": "报价时点未标明；仅为截图参考值，未独立核验。涨跌幅被遮挡，未转录。"
+  },
+  {
+    "code": "159583",
+    "name": "通信ETF富国",
+    "price": "1.733",
+    "change": "-1.59",
+    "index": "中证通信设备主题指数",
+    "type": "etf",
+    "source": "用户提供竞品截图",
+    "reference": "etfs",
+    "asOf": null,
+    "note": "报价时点未标明；仅为截图参考值，未独立核验。"
+  },
+  {
+    "code": "601869",
+    "name": "长飞光纤",
+    "price": "456.60",
+    "change": "-0.52",
+    "index": null,
+    "type": "stock",
+    "source": "用户提供竞品截图",
+    "reference": "stocks",
+    "asOf": null,
+    "note": "报价时点未标明；仅为截图参考值，未独立核验。"
+  }
+];
+
+// Approved theme-list material: screenshot-only records, no inferred codes or prices.
+opportunityReferenceQuotes.push(...[
+  {
+    "id": "ref-zhongsheng",
+    "code": null,
+    "name": "众生药业",
+    "change": "+0.20",
+    "type": "stock",
+    "themeId": "innovative-drugs",
+    "price": null,
+    "index": null,
+    "reference": "theme-list",
+    "source": "用户提供主题列表截图",
+    "asOf": null,
+    "note": "截图未显示证券代码、参考价格与报价日期；不补造。"
+  },
+  {
+    "id": "ref-aoruite",
+    "code": null,
+    "name": "奥锐特",
+    "change": "-0.50",
+    "type": "stock",
+    "themeId": "innovative-drugs",
+    "price": null,
+    "index": null,
+    "reference": "theme-list",
+    "source": "用户提供主题列表截图",
+    "asOf": null,
+    "note": "截图未显示证券代码、参考价格与报价日期；不补造。"
+  },
+  {
+    "id": "ref-kailaiying",
+    "code": null,
+    "name": "凯莱英",
+    "change": "-1.74",
+    "type": "stock",
+    "themeId": "innovative-drugs",
+    "price": null,
+    "index": null,
+    "reference": "theme-list",
+    "source": "用户提供主题列表截图",
+    "asOf": null,
+    "note": "截图未显示证券代码、参考价格与报价日期；不补造。"
+  },
+  {
+    "id": "ref-vaccine-cm",
+    "code": null,
+    "name": "疫苗ETF招商",
+    "change": "+1.36",
+    "type": "etf",
+    "themeId": "innovative-drugs",
+    "price": null,
+    "index": null,
+    "reference": "theme-list",
+    "source": "用户提供主题列表截图",
+    "asOf": null,
+    "note": "截图未显示证券代码、参考价格与报价日期；不补造。"
+  },
+  {
+    "id": "ref-vaccine-js",
+    "code": null,
+    "name": "疫苗ETF嘉实",
+    "change": "+1.06",
+    "type": "etf",
+    "themeId": "innovative-drugs",
+    "price": null,
+    "index": null,
+    "reference": "theme-list",
+    "source": "用户提供主题列表截图",
+    "asOf": null,
+    "note": "截图未显示证券代码、参考价格与报价日期；不补造。"
+  },
+  {
+    "id": "ref-zhongkeyi",
+    "code": null,
+    "name": "中科仪",
+    "change": "+0.36",
+    "type": "stock",
+    "themeId": "semiconductors",
+    "price": null,
+    "index": null,
+    "reference": "theme-list",
+    "source": "用户提供主题列表截图",
+    "asOf": null,
+    "note": "截图未显示证券代码、参考价格与报价日期；不补造。"
+  },
+  {
+    "id": "ref-tuojing",
+    "code": null,
+    "name": "拓荆科技",
+    "change": "-0.46",
+    "type": "stock",
+    "themeId": "semiconductors",
+    "price": null,
+    "index": null,
+    "reference": "theme-list",
+    "source": "用户提供主题列表截图",
+    "asOf": null,
+    "note": "截图未显示证券代码、参考价格与报价日期；不补造。"
+  },
+  {
+    "id": "ref-chip-design",
+    "code": null,
+    "name": "科创芯片设计ETF国联安",
+    "change": "+2.42",
+    "type": "etf",
+    "themeId": "semiconductors",
+    "price": null,
+    "index": null,
+    "reference": "theme-list",
+    "source": "用户提供主题列表截图",
+    "asOf": null,
+    "note": "截图未显示证券代码、参考价格与报价日期；不补造。"
+  }
+]);
+const opportunityThemeChanges={"optical-interconnect": "-1.18", "innovative-drugs": "+0.72", "semiconductors": "+0.48", "ai-applications": "+2.36"};

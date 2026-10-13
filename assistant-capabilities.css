@@ -1,0 +1,29 @@
+/* Existing CJK typography and workspace blue/neutral palette; the sequence encodes real dependencies. */
+#chatForm{flex-shrink:0}
+#chatForm .cap-composer-tools{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:8px}
+.cap-composer-choices{display:flex;gap:6px;min-width:0}
+#chatForm .cap-composer-choices button{display:flex;align-items:center;justify-content:center;width:auto;height:28px;min-height:28px;padding:3px 8px;border:1px solid var(--line);border-radius:6px;background:var(--card-raised);color:var(--muted);font-size:10px;white-space:nowrap}
+#chatForm .cap-composer-choices button:hover{color:var(--text);border-color:var(--subtle)}
+#chatForm .cap-composer-meta{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:9px;line-height:1.6}
+#chatForm .cap-composer-meta>span{flex:1;font-size:9px;color:var(--subtle)}
+#chatForm .cap-composer-meta>button{display:inline-block;width:auto;height:auto;min-height:20px;border:0;border-radius:0;padding:0;background:none;color:var(--orange);font-size:10px;white-space:nowrap}
+#capabilityExit[hidden]{display:none!important}
+#assistantContent[hidden],#capabilityPanel[hidden],#chatForm[hidden]{display:none!important}
+.capability-panel{min-height:0;scrollbar-gutter:stable}
+.cap-run-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:6px 0 12px}.cap-run-head .eyebrow{font-size:9px}.cap-run-head button{font-size:11px}
+.cap-question{font-size:12px;line-height:1.8;border-left:2px solid var(--orange);padding-left:10px;margin:12px 0}
+.cap-profile-note{padding:12px;border:1px solid var(--line);border-radius:7px;background:var(--orange-soft)}.cap-profile-note strong{font-size:11px}.cap-profile-note p,.cap-result p{font-size:11px;line-height:1.85;color:var(--muted)}.cap-profile-note small{font-size:10px;line-height:1.7;color:var(--subtle);display:block}
+.cap-sequence{display:flex;flex-wrap:wrap;gap:5px 8px;font-size:10px;color:var(--orange);margin:16px 0}.cap-boundary{font-size:10px!important;line-height:1.8!important;color:var(--subtle)!important}
+.cap-progress{font-size:11px;margin:18px 0 12px;color:var(--orange)}
+.cap-steps{list-style:none;counter-reset:step;padding:0;margin:0}.cap-steps>li{counter-increment:step;position:relative;border-left:1px solid var(--line);margin-left:10px;padding:0 0 16px 20px}.cap-steps>li:before{content:counter(step);position:absolute;left:-10px;top:0;width:20px;height:20px;display:grid;place-items:center;border:1px solid var(--line);border-radius:50%;font-size:10px;background:var(--card);color:var(--subtle)}.cap-steps>li.shown:before{border-color:var(--orange);color:var(--orange)}
+.cap-steps summary{cursor:pointer;font-size:11px;line-height:1.8}.cap-steps summary small{font-size:9px;color:var(--subtle);margin-left:7px}.cap-steps .cap-worker{color:var(--orange);font-size:10px}.cap-steps p,.cap-steps dd{font-size:11px;line-height:1.8;color:var(--muted);overflow-wrap:anywhere}.cap-steps dt{font-size:10px;color:var(--subtle);margin-top:10px}.cap-steps dd{margin:4px 0 0}
+.cap-result{border-top:1px solid var(--line);padding-top:16px;margin-top:8px;scroll-margin-top:8px}.cap-result h3{font-size:15px;line-height:1.7}.cap-result h4{font-size:12px;margin:18px 0 7px}.cap-result>.text-action{display:block;font-size:11px;margin:12px 0}.cap-run-actions{display:flex;flex-direction:column;gap:10px;margin:18px 0}.cap-run-actions>.text-action{font-size:11px}
+.cap-dialog-lead{font-size:13px;line-height:1.8;color:var(--muted)}.cap-choice-list{display:grid;gap:8px;margin:16px 0}.cap-choice{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line);padding:12px;border-radius:7px;cursor:pointer}.cap-choice:has(input:checked){border-color:var(--orange);background:var(--orange-soft)}.cap-choice input{margin-top:5px;accent-color:var(--orange)}.cap-choice strong{font-size:13px;display:block}.cap-choice small{display:block;color:var(--muted);font-size:11px;line-height:1.7;margin-top:5px}
+.cap-prompt-row{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.cap-prompt-row button{padding:6px 9px;border:1px solid var(--line);border-radius:5px;font-size:11px;color:var(--orange)}#capPrepareError{font-size:12px;color:var(--red)}
+#capabilityPrepare textarea{min-height:80px;width:100%;resize:vertical}
+@media(max-height:700px){#chatForm textarea{min-height:38px}#chatForm .cap-composer-meta{margin-top:5px}}
+#chatForm .cap-composer-tools>button[type=submit]{flex-shrink:0;background:var(--text);color:var(--card)}
+#chatForm .cap-composer-tools>button[type=submit] svg{color:inherit}
+.cap-assignment{margin:14px 0;padding:12px;border:1px solid var(--line);border-radius:7px;font-size:11px;line-height:1.8;overflow-wrap:anywhere}.cap-assignment p{margin:6px 0;color:var(--orange)}.cap-assignment small{color:var(--subtle);font-size:10px}
+.cap-routing-details{margin:18px 0;font-size:11px;line-height:1.8}.cap-routing-details summary{cursor:pointer;color:var(--orange)}.cap-routing-details>div{padding:12px 0;border-bottom:1px solid var(--line)}.cap-routing-details p,.cap-routing-details small{color:var(--muted)}
+.cap-team{margin:20px 0}.cap-team>h3{font-size:13px}.cap-expert{border:1px solid var(--line);border-left:3px solid var(--orange);border-radius:8px;padding:12px;margin:10px 0;font-size:11px;line-height:1.85;overflow-wrap:anywhere}.cap-expert[data-expert="company"]{border-left-color:var(--green)}.cap-expert[data-expert="value"]{border-left-color:var(--muted)}.cap-expert header{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px}.cap-expert header span{font-size:9px;color:var(--subtle)}.cap-expert-skills{color:var(--orange);font-size:10px}.cap-expert-lead{color:var(--text)}.cap-expert summary{cursor:pointer;color:var(--muted)}.cap-expert h4{font-size:11px;margin-bottom:4px}.cap-expert details p{color:var(--muted)}

@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="color-scheme" content="dark light">
+  <!-- Keep legacy render passes out of the first visible frame. -->
+  <style id="workbenchBootStyle">
+    #workbenchBootStatus{display:none;position:fixed;inset:0;place-items:center;font:13px/1.6 -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;z-index:10000}
+    html[data-app-boot="loading"]{background:#f8f9fa;color-scheme:light}
+    html[data-app-boot="loading"]:not(.light){background:#17191d;color-scheme:dark}
+    html[data-app-boot="loading"] body{visibility:hidden;background:transparent!important}
+    html[data-app-boot="loading"] #workbenchBootStatus{display:grid;visibility:visible;color:#646970}
+    html[data-app-boot="loading"]:not(.light) #workbenchBootStatus{color:#b1b5bf}
+  </style>
+  <script id="workbenchBoot">
+    (()=>{
+      const root=document.documentElement;
+      // Client identity stays stable when a desktop window is resized.
+      const phone=navigator.userAgentData?.mobile===true||/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+      window.workbenchClient=Object.freeze({desktop:!phone,mobile:phone});
+      root.dataset.workbenchClient=phone?'mobile':'desktop';
+      root.dataset.appBoot='loading';
+      let theme='light';
+      try{theme=JSON.parse(localStorage.getItem('vra-design-today-v2-layout')||'null')?.theme||theme;}catch{}
+      root.classList.toggle('light',theme==='light');
+      document.addEventListener('DOMContentLoaded',()=>{
+        // All deferred scripts and their initializers finish before these frames.
+        // Visibility preserves the measurements used by the final card layout.
+        requestAnimationFrame(()=>requestAnimationFrame(()=>{
+          root.dataset.appBoot='ready';
+          document.getElementById('workbenchBootStatus')?.remove();
+          performance.mark('workbench-ready');
+        }));
+      },{once:true});
+    })();
+  </script>
+  <title>今日总览 · 个人投研工作台 · 设计样稿</title>
+  <link rel="stylesheet" href="styles.css?v=643b3769d6d4"><link rel="stylesheet" href="flow.css?v=d1a3321c30c8"><link rel="stylesheet" href="brief.css?v=40ac1f7ca244">
+  <script src="icons.js?v=a04730b10589" defer></script><script src="app.js?v=fa5fd08bbf20" defer></script><script src="flow.js?v=293d128ccbe4" defer></script><script src="brief-snapshot.js?v=b7d8f7711bc7" defer></script><script src="brief-content.js?v=13bb521dd08d" defer></script><script src="research-demo.js?v=860bb6deb086" defer></script><script src="research-tracking.js?v=39a69cebc870" defer></script><script src="research-tracking-ui.js?v=8dd107285b2b" defer></script><script src="brief.js?v=88a737f88df1" defer></script>
+  <link rel="stylesheet" href="opportunities.css?v=31d3b4b1a304"><script src="opportunity-data.js?v=818127947739" defer></script><script src="hotspot-data.js?v=ae4499a56a41" defer></script><script src="opportunities.js?v=5c2e5494e41b" defer></script>
+  <link rel="stylesheet" href="overview-content.css?v=1f14ef0ed116"><script src="overview-content.js?v=6d0d227e4c44" defer></script><link rel="stylesheet" href="theme-list.css?v=6bb61a82af1d"><link rel="stylesheet" href="evening.css?v=ca396aff8dbb"><script src="evening.js?v=234dd2dd5866" defer></script><link rel="stylesheet" href="brief-actions.css?v=7ca306e4b070"><script src="risk-preference.js?v=645c9f6556da" defer></script><link rel="stylesheet" href="research-methods.css?v=2e7eeda86290"><script src="research-methods.js?v=288b38f0348a" defer></script><script src="brief-actions.js?v=05b30744ba7c" defer></script><link rel="stylesheet" href="event-tracking.css?v=1c35e9b1ab8c"><script src="event-tracking.js?v=a963da960be9" defer></script><link rel="stylesheet" href="security-tracking.css?v=9427d86f605b"><script src="security-tracking.js?v=710283c6d6c0" defer></script><script src="vendor/xlsx-0.20.3.min.js?v=cc015130aa85" defer></script><link rel="stylesheet" href="holdings.css?v=4aae6f996f1c"><script src="holdings.js?v=a0c23dda6515" defer></script><link rel="stylesheet" href="review-ready.css?v=10a96ade561e"><script src="review-ready.js?v=e3a6215dfe9d" defer></script><link rel="stylesheet" href="tracking-picker.css?v=75d88b8aae98"><script src="tracking-picker.js?v=231c8705143f" defer></script><link rel="stylesheet" href="market-overview.css?v=2f27bf618baa"><script src="market-overview-data.js?v=cb031fccbe5f" defer></script><script src="market-overview.js?v=1585e43ed303" defer></script><link rel="stylesheet" href="index-overview.css?v=13f11266ce8b"><script src="index-overview-data.js?v=bafde719c5aa" defer></script><script src="index-overview.js?v=27bfbac619cf" defer></script><link rel="stylesheet" href="etf-insights.css?v=a2f81013700b"><script src="etf-insights.js?v=28da16001b83" defer></script><link rel="stylesheet" href="hotspot-opportunities.css?v=1dec7b01add7"><script src="hotspot-opportunities.js?v=424c95e2896d" defer></script><link rel="stylesheet" href="tracking-center.css?v=5f18e28926f8"><script src="tracking-center.js?v=7defcf0ebdde" defer></script><script src="demo-market-chart.js?v=7696635f54b4" defer></script><link rel="stylesheet" href="navigation.css?v=8be2272d2ecc"><script src="brief-related-themes.js?v=78ca0cc5ac33" defer></script><script src="event-driver-data.js?v=f74f796b1ff9" defer></script><script src="event-driver.js?v=c829c0ed0b43" defer></script><script src="navigation.js?v=65b139dbafb0" defer></script>
+  <link rel="stylesheet" href="presentation-annotations.css?v=d61c194af729"><script src="presentation-annotations.js?v=923a9dfc41a3" defer></script>
+  <link rel="stylesheet" href="workbench-style.css?v=4ed44b899989">
+  <link rel="stylesheet" href="profile-memory.css?v=1c0870a050a0"><script src="profile-memory.js?v=a68fe393a220" defer></script>
+  <link rel="stylesheet" href="brief-personalization.css?v=e391b2b14786"><script src="brief-personalization.js?v=8826d623a9d9" defer></script>
+  <link rel="stylesheet" href="brief-guide.css?v=1f413e50946c"><script src="brief-guide.js?v=f81b38ba2c0e" defer></script>
+  <link rel="stylesheet" href="event-sources.css?v=65e1c0b8183e"><script src="event-sources.js?v=a354553657c5" defer></script>
+  <link rel="stylesheet" href="onboarding-tour.css?v=292fb50fded3"><script src="onboarding-tour.js?v=742890806937" defer></script>
+  <script src="newcomer-reward.js?v=1a7ba8909d0f" defer></script><link rel="stylesheet" href="first-research-task.css?v=920d7ca63964"><script src="first-research-task.js?v=aa311f559284" defer></script>
+  <link rel="stylesheet" href="assistant-capabilities.css?v=04090621ca8e"><script src="capability-routing.js?v=fbc3061330de" defer></script><script src="collaboration-demo.js?v=7825b3282942" defer></script><script src="assistant-capabilities.js?v=3dee740aa45f" defer></script>
+  <link rel="stylesheet" href="inline-questions.css?v=21d3cbc15b6d"><script src="inline-questions.js?v=beab4d842517" defer></script>
+  <link rel="stylesheet" href="focus-demo.css?v=b5675ca88da9"><script src="focus-demo.js?v=1220cc60c1ba" defer></script>
+  <link rel="stylesheet" href="brief-alerts.css?v=46b5fd351171"><link rel="stylesheet" href="research-demo.css?v=c9826e5405ca"><script src="brief-alerts.js?v=7e429c3a51d9" defer></script>
+  <link rel="stylesheet" href="profile-delivery.css?v=b7811cfb828b"><script src="profile-delivery.js?v=e061d368d37a" defer></script>
+  <link rel="stylesheet" href="evening-overseas.css?v=3bab99d18f6b"><script src="evening-overseas.js?v=f3bdff76e1b2" defer></script>
+  <script src="overview-v3-data.js?v=956bd29be9a2" defer></script>
+  <script src="overview-v3.js?v=0c8ee431c3a2" defer></script>
+  <script src="overview-v11-data.js?v=d78d7a52e41a" defer></script>
+  <script src="overview-v11.js?v=a07bea253e99" defer></script>
+  <script src="profile-brief-questions.js?v=040236ae30ce" defer></script>
+  <script src="brief-personal-related.js?v=b62e2c139afa" defer></script>
+  <script src="evening-reference-data.js?v=1175f1f44655" defer></script><link rel="stylesheet" href="evening-desktop.css?v=18be1ff4e30c"><script src="evening-desktop.js?v=077768d71e4c" defer></script>
+  <link rel="stylesheet" href="event-driver.css?v=404e4869d6ee"><script src="event-driver-init.js?v=e4368d276181" defer></script>
+</head>
+<body>
+<div id="workbenchBootStatus" role="status" aria-live="polite">正在加载工作台…</div>
+<a class="skip" href="#main">跳到主要内容</a>
+<div class="design-strip"><span><i data-icon="panels-top-left"></i> 页面设计样稿 <b>V2</b></span><span>沿用现有原型 · 内容与公司均为虚构示例，未接入行情或 AI</span><button id="designNotes">设计说明 <i data-icon="arrow-up-right"></i></button></div>
+<div class="shell">
+  <aside class="sidebar" aria-label="主导航">
+    <a class="brand" href="#overview"><span class="brand-mark"><i data-icon="chart-no-axes-combined"></i></span><span>个人投研工作台<small>你的信息，你的研究</small></span></a>
+    <nav>
+      <small class="nav-label">工作空间</small>
+      <a class="nav-item active" href="#overview" aria-current="page"><i data-icon="activity"></i>今日总览<span class="nav-dot"></span></a>
+      <button class="nav-item" data-existing="资讯雷达"><i data-icon="radar"></i>资讯雷达<i data-icon="chevron-right" class="nav-arrow"></i></button>
+      <button class="nav-item" data-existing="板块中心"><i data-icon="layout-grid"></i>板块中心</button>
+      <button class="nav-item" data-existing="股票工作台"><i data-icon="star"></i>股票工作台</button>
+      <small class="nav-label second">研究与服务</small>
+      <button class="nav-item" data-preview="research"><i data-icon="files"></i>我的研究</button>
+      <button class="nav-item" data-preview="subscriptions"><i data-icon="bell"></i>订阅与提醒</button>
+    </nav>
+    <div class="sidebar-bottom"><div class="workspace-id"><span class="workspace-avatar">研</span><div>个人工作空间<small>自选 · 研究 · 持续服务</small></div></div><a href="https://phoenixtree.ai/" target="_blank" rel="noopener">Phoenix Tree <i data-icon="arrow-up-right"></i></a></div>
+  </aside>
+  <div class="workspace">
+    <header class="topbar"><div class="breadcrumb">工作空间 <span>/</span> <strong id="breadcrumbTitle">今日总览</strong></div><div class="top-tools"><span class="scenario">盘前场景</span><button class="icon-button" id="themeToggle" aria-label="切换为浅色"><i data-icon="sun"></i></button><button type="button" class="profile-entry" id="profileEntry" data-profile-onboarding aria-haspopup="dialog" aria-controls="profileDialog"><i data-icon="sliders-horizontal"></i><span>用户薄画像</span></button><button type="button" class="tour-entry" id="onboardingTourEntry" aria-haspopup="dialog" aria-controls="workbenchTour" title="从首页开始查看新手引导"><i data-icon="sparkles"></i><span>新手引导</span></button><button class="assistant-toggle" id="assistantToggle" aria-expanded="true"><i data-icon="sparkles"></i> 闪电猫</button></div></header>
+    <div class="work-area">
+      <main id="main" tabindex="-1">
+        <section id="overviewView">
+          <header class="page-head"><div><div class="eyebrow">你的每日研究起点</div><h1>今日总览</h1><p>从与你有关的信息开始，带着问题继续研究。</p></div><button class="button" id="addWidget"><i data-icon="plus"></i>添加组件</button></header>
+          <div class="dayline"><span><span class="status-dot"></span>9 月 21 日 · 周一</span><span>盘前简报已准备好 <span class="muted">· 场景示意</span></span><button id="editLayout"><i data-icon="sliders-horizontal"></i>整理工作台</button></div>
+          <div id="widgetGrid" class="widget-grid"></div>
+          <div class="layout-footer"><span><i data-icon="panels-top-left"></i>按你的习惯，安排工作台。</span><button id="addWidgetBottom">添加组件 <i data-icon="plus"></i></button></div>
+        </section>
+        <section id="briefView" hidden></section>
+        <section id="researchView" hidden></section><section id="flowView" hidden></section>
+      </main>
+      <aside class="assistant" id="assistant" aria-label="闪电猫智能助手">
+        <header class="assistant-head"><span class="cat-mark"><i data-icon="sparkles"></i></span><div><strong>闪电猫</strong><small>全能金融投研专家</small></div><button class="icon-button" id="closeAssistant" aria-label="收起闪电猫"><i data-icon="panel-right-close"></i></button></header>
+        <div class="assistant-context"><i data-icon="link"></i><span>当前上下文</span><strong id="contextName">今日总览</strong></div>
+        <div class="assistant-scroll" id="assistantContent"></div>
+        <form class="composer" id="chatForm"><label for="chatInput" class="sr-only">向闪电猫提问</label><textarea id="chatInput" rows="2" placeholder="围绕当前内容，继续问我…"></textarea><div class="cap-composer-tools"><div class="cap-composer-choices" aria-label="本次提问的 Agent 与 Skill"><button type="button" id="capabilityAgent" data-cap="agent" aria-haspopup="dialog">Agent · 全能</button><button type="button" id="capabilitySkills" data-cap="skills" aria-haspopup="dialog">Skill · 自动</button></div><button type="submit" aria-label="发送问题"><i data-icon="arrow-up"></i></button></div><div class="cap-composer-meta"><span>提问将携带当前页面信息</span><button type="button" id="capabilityExit" data-cap="close" hidden>返回对话</button><button type="button" data-cap="prepare" id="capabilityDemo">协作演示</button></div></form>
+        <div class="assistant-foot">样稿仅演示交互 · 不运行模型</div>
+      </aside>
+    </div>
+  </div>
+</div>
+<dialog id="modal" aria-labelledby="modalTitle"><div class="modal-head"><div><span id="modalEyebrow" class="eyebrow">个人投研工作台</span><h2 id="modalTitle"></h2></div><button class="icon-button" id="closeModal" aria-label="关闭弹窗"><i data-icon="x"></i></button></div><div id="modalBody"></div></dialog>
+<div id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

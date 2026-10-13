@@ -1,0 +1,10 @@
+.evening-overseas{margin:18px 0 24px;padding:24px;border:1px solid var(--line);border-radius:12px;background:var(--card)}
+.overseas-heading{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:8px 16px}
+.overseas-heading h3{margin:0;font-size:1.125rem}.overseas-heading>span,.overseas-notice{color:var(--muted);font-size:.75rem;line-height:1.8}
+.evening-overseas .overseas-notice{margin:8px 0 12px}.overseas-information{margin:0;padding:0;list-style:none}
+.overseas-information li{padding:16px 0;border-top:1px solid var(--line)}.overseas-stage{margin-bottom:6px;color:var(--muted);font-size:.75rem}
+.overseas-information h4{margin:0 0 6px;font-size:1rem;font-weight:600;line-height:1.6}.overseas-information p{margin:0;color:var(--muted);font-size:.875rem;line-height:1.8;overflow-wrap:anywhere}
+.evening-overseas .research-workspace-heading{margin:8px 0 0;padding-top:18px;border-top:1px solid var(--line)}
+.overseas-research-link{margin-top:16px}.overseas-empty{color:var(--muted);line-height:1.8}.overseas-answer-next{font-size:.875rem;line-height:1.8}.overseas-answer-next strong{display:block;margin-bottom:4px}
+.overseas-preview{padding-bottom:18px;margin-bottom:16px;border-bottom:1px solid var(--line)}.overseas-preview>strong{font-size:.875rem}.overseas-preview p{color:var(--muted);font-size:.8125rem;line-height:1.8}
+@media(max-width:600px){.evening-overseas{padding:18px}.overseas-heading>span{flex-basis:100%}.overseas-questions .research-question-expert{margin-left:0}.overseas-information h4{overflow-wrap:anywhere}}

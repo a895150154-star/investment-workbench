@@ -1,0 +1,28 @@
+/* Local holdings import uses the accepted workbench colors and controls. */
+.holdings-boundary{font-size:11px;line-height:1.8;color:var(--subtle);margin:20px 0 0}
+.holdings-table-wrap{max-width:100%;overflow-x:auto;overscroll-behavior-x:contain}
+.holdings-table{width:100%;border-collapse:collapse;text-align:left;font-size:12px;min-width:570px}
+.holdings-table th{padding:12px 10px;background:var(--card-raised);color:var(--muted);font-size:11px;font-weight:500;border-bottom:1px solid var(--line)}
+.holdings-table td{padding:16px 10px;border-bottom:1px solid var(--line-soft);vertical-align:top;font-variant-numeric:tabular-nums}
+.holdings-table td small{display:block;font-size:10px;color:var(--subtle);line-height:1.6;margin-top:5px}.holdings-table small.inline{display:inline}
+.holdings-table strong{font-weight:500}.holdings-table strong a{color:var(--text)}.holdings-table strong a:hover{color:var(--orange)}
+.holdings-row-actions{display:flex;gap:14px}.holdings-row-actions .text-action{font-size:11px;white-space:nowrap}
+#modal.holdings-modal{width:min(940px,calc(100vw - 32px))}
+.holdings-steps{display:flex;list-style:none;gap:24px;padding:0;margin:0 0 20px;color:var(--subtle);font-size:12px}.holdings-steps li.current{color:var(--orange);font-weight:600}
+.holdings-upload{display:grid;gap:8px;padding:26px;border:1px dashed var(--line);background:var(--card-raised);border-radius:10px;margin:16px 0}
+.holdings-upload strong{display:flex;gap:10px;align-items:center;font-size:15px}.holdings-upload span{font-size:11px;color:var(--muted)}
+.holdings-upload input{max-width:100%;font:inherit;margin-top:8px}.holdings-upload input::file-selector-button{border:1px solid var(--line);color:var(--text);background:var(--card);padding:8px 12px;margin-right:12px;border-radius:6px;cursor:pointer}
+.holdings-file-meta{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:22px;border-top:1px solid var(--line);padding-top:20px}.holdings-file-meta strong{overflow-wrap:anywhere}.holdings-file-meta label{display:flex;gap:8px;align-items:center}
+.holdings-file-meta select,.holdings-edit-table input,.holdings-edit-table select{border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--text);font:inherit;padding:9px;min-width:0}
+.holdings-mapping{display:grid;grid-template-columns:1fr 1fr;gap:0 20px}.holdings-mapping .field small,.holdings-policy small{display:block;line-height:1.6;color:var(--subtle);font-size:10px;margin-top:5px}
+.holdings-edit-table{table-layout:fixed;min-width:680px}.holdings-edit-table th:nth-child(1){width:17%}.holdings-edit-table th:nth-child(2){width:26%}.holdings-edit-table th:nth-child(3),.holdings-edit-table th:nth-child(4){width:17%}
+.holdings-edit-table input,.holdings-edit-table select{display:block;width:100%}.holdings-edit-table select{margin-top:7px}.holdings-edit-table input[readonly]{opacity:.65}
+.holding-row-state{display:block;color:var(--green);font-size:11px;line-height:1.7;overflow-wrap:anywhere}.holding-row-state.invalid{color:var(--orange)}.holdings-edit-table .text-action{font-size:11px;margin-top:7px}
+.holdings-review-summary{padding:12px 15px;background:var(--orange-soft);color:var(--muted);border-radius:7px;font-size:12px}
+.holdings-modal .flow-error:empty{display:none}.holdings-modal .modal-actions{flex-wrap:wrap}.holdings-modal .holdings-boundary{margin-top:18px}
+.holdings-modal :is(input,select,button):focus-visible{outline:2px solid var(--orange);outline-offset:2px}.holdings-modal button:disabled{opacity:.45;cursor:not-allowed}
+@media(max-width:720px){.holdings-mapping{grid-template-columns:1fr;gap:0}.holdings-upload{padding:18px}.holdings-steps{gap:18px;font-size:11px}#modal.holdings-modal{width:calc(100vw - 16px)}.holdings-modal #modalBody{padding:16px}.holdings-modal .modal-head{padding:18px 16px}.holdings-modal .modal-actions .button{flex:1}.review-workspace-intro .flow-actions{gap:8px}.holdings-table{min-width:570px}}
+@media(max-width:650px){
+ .holdings-table,.holdings-edit-table{min-width:0;display:block}.holdings-table thead{display:none}.holdings-table tbody{display:block}.holdings-table tr{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0 12px;border-bottom:1px solid var(--line);padding:12px 0}.holdings-table td{display:block;min-width:0;border:0;padding:8px 0;overflow-wrap:anywhere}.holdings-table td:first-child,.holdings-table td:nth-child(4),.holdings-table td:nth-child(5){grid-column:1/-1}.holdings-table td:before{display:block;color:var(--subtle);font-size:10px;margin-bottom:5px}.holdings-table td:nth-child(2):before{content:'持仓数量'}.holdings-table td:nth-child(3):before{content:'成本价'}.holdings-table td:nth-child(4):before{content:'记录来源'}
+ .holdings-edit-table td:first-child,.holdings-edit-table td:nth-child(4){grid-column:auto}.holdings-edit-table td:nth-child(5){grid-column:1/-1}.holdings-edit-table td:nth-child(1):before{content:'代码'}.holdings-edit-table td:nth-child(2):before{content:'名称与类型'}.holdings-edit-table td:nth-child(3):before{content:'数量（股／份）'}.holdings-edit-table td:nth-child(4):before{content:'成本价（元）'}.holdings-edit-table td:nth-child(5):before{content:'核对状态'}.holdings-edit-table td:nth-child(5){display:flex;align-items:center;gap:12px;flex-wrap:wrap}.holdings-edit-table .text-action{margin:0 0 0 auto}.holdings-edit-table td input{min-height:40px}.holdings-modal .holdings-table-wrap{overflow:visible}
+}

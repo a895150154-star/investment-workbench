@@ -1,0 +1,56 @@
+/* Scoped paper adaptation: inherit the existing workspace and assistant geometry. */
+@media all{
+#briefView[data-evening-desktop] .night-reference-target .night-target-columns{grid-template-columns:1fr;gap:14px}
+#briefView[data-evening-desktop] .night-report section[id]{scroll-margin-top:130px}
+#briefView[data-evening-desktop] .night-report{container-type:inline-size;container-name:evening-paper;min-width:0}
+#briefView[data-evening-desktop] .brief-extra-actions{flex-wrap:wrap;justify-content:flex-end}
+#briefView[data-evening-desktop] .night-heading{margin:0 0 18px}
+#briefView[data-evening-desktop] .night-heading h2{margin:0;font-size:20px;line-height:28px;font-weight:600}
+#briefView[data-evening-desktop] .night-report>section+section{border-top:1px solid var(--line);padding-top:28px;margin-top:28px}
+#briefView[data-evening-desktop] .night-target{padding:18px 0;min-width:0}
+#briefView[data-evening-desktop] .night-target+.night-target{border-top:1px solid var(--line-soft)}
+#briefView[data-evening-desktop] .night-target-heading{display:flex;align-items:center;flex-wrap:wrap;gap:10px 14px;margin:0 0 14px}
+#briefView[data-evening-desktop] .night-target-heading h3{font-size:17px;line-height:25px;font-weight:600;margin:0}
+#briefView[data-evening-desktop] .night-target-name{color:var(--text);text-decoration:none}
+#briefView[data-evening-desktop] .night-target-name:hover{color:var(--orange)}
+#briefView[data-evening-desktop] .night-target-heading>.op-number{font-size:17px;font-weight:500}
+#briefView[data-evening-desktop] .night-target-columns{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:20px;align-items:start}
+#briefView[data-evening-desktop] .night-target-columns>div{min-width:0}
+#briefView[data-evening-desktop] .night-report h4{font-size:12px;line-height:20px;font-weight:500;color:var(--muted);margin:0 0 8px}
+#briefView[data-evening-desktop] .night-report p{font-size:14px;line-height:23px;margin:0 0 12px;overflow-wrap:anywhere}
+#briefView[data-evening-desktop] .night-ai{background:var(--orange-soft);border:0;border-radius:6px;padding:14px 16px;margin:0;max-width:none}
+#briefView[data-evening-desktop] .night-ai h4{display:flex;align-items:center;gap:6px;color:var(--orange)}
+#briefView[data-evening-desktop] .night-ai h4 .icon{width:15px;height:15px}
+#briefView[data-evening-desktop] .night-ai p:last-child{margin-bottom:0}
+#briefView[data-evening-desktop] .night-report .brief-source{font-size:12px;line-height:20px;margin:4px 0 0}
+#briefView[data-evening-desktop] .night-subheading{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:16px}
+#briefView[data-evening-desktop] .night-subheading h3,#briefView[data-evening-desktop] .night-overview h3{font-size:16px;line-height:24px;font-weight:600;margin:0 0 10px}
+#briefView[data-evening-desktop] .night-subheading h3{margin:0}
+#briefView[data-evening-desktop] .night-market-panel,#briefView[data-evening-desktop] .night-flow{margin-top:24px;padding-top:24px;border-top:1px solid var(--line-soft);min-width:0}
+#briefView[data-evening-desktop] .night-market-panel .evening-index-grid{margin:0 0 16px}
+#briefView[data-evening-desktop] .night-market-panel .evening-index{padding:12px;font-size:13px;flex-wrap:wrap;min-width:0}
+#briefView[data-evening-desktop] .night-market-panel .evening-stat-grid{grid-template-columns:repeat(4,minmax(0,1fr));margin:0 0 16px}
+#briefView[data-evening-desktop] .night-market-panel .evening-stat-grid>div{min-width:0;padding:13px;gap:7px}
+#briefView[data-evening-desktop] .night-market-panel .evening-stat-grid strong{font-size:18px;overflow-wrap:anywhere}
+#briefView[data-evening-desktop] .night-market-panel .evening-stat-grid small{font-size:11px}
+#briefView[data-evening-desktop] .night-market-panel .report-analysis{margin-top:14px}
+#briefView[data-evening-desktop] .night-market-panel .report-analysis .text-action{font-size:12px;line-height:20px;white-space:normal}
+#briefView[data-evening-desktop] .night-flow .flow-tabs{margin:0}
+#briefView[data-evening-desktop] .night-flow-groups{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+#briefView[data-evening-desktop] .night-flow-tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+#briefView[data-evening-desktop] .night-flow .evening-flow-tile{padding:12px;gap:6px;text-decoration:none;overflow-wrap:anywhere}
+#briefView[data-evening-desktop] .night-flow .evening-flow-tile strong{font-size:13px;line-height:21px}
+#briefView[data-evening-desktop] .night-flow .evening-flow-tile>span{font-size:11px;line-height:19px}
+#briefView[data-evening-desktop] .night-flow .evening-flow-tile>.op-number{font-size:16px;line-height:24px;font-variant-numeric:tabular-nums;white-space:normal}
+#briefView[data-evening-desktop] .night-flow .evening-flow-tile>span .op-number{font-size:12px;white-space:normal}
+#briefView[data-evening-desktop] .night-report .night-flow-note{font-size:12px;line-height:20px;color:var(--subtle);margin:14px 0 8px}
+#briefView[data-evening-desktop] .night-events .evening-event{padding:20px 0}
+#briefView[data-evening-desktop] .night-events .evening-event:first-of-type{padding-top:0}
+#briefView[data-evening-desktop] .night-events .report-news-title{font-size:16px;line-height:25px;white-space:normal}
+#briefView[data-evening-desktop] .night-events .theme-security-chip{white-space:normal;overflow-wrap:anywhere}
+#briefView[data-evening-desktop] .night-flow .flow-tabs button[aria-pressed=true]{border-bottom-color:var(--text);color:var(--text)}
+#briefView[data-evening-desktop] .night-flow .flow-tabs button[aria-pressed=false]{border-bottom-color:transparent;color:var(--muted)}
+@container evening-paper (max-width:760px){#briefView[data-evening-desktop] .night-market-panel .evening-stat-grid{grid-template-columns:repeat(2,minmax(0,1fr))}#briefView[data-evening-desktop] .night-flow-tiles{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@container evening-paper (max-width:520px){#briefView[data-evening-desktop] .night-flow-groups{grid-template-columns:1fr}}
+@container evening-paper (max-width:650px){#briefView[data-evening-desktop] .night-target-columns{grid-template-columns:1fr;gap:14px}#briefView[data-evening-desktop] .night-market-panel .evening-index-grid{grid-template-columns:1fr}}
+}

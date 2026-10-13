@@ -1,0 +1,34 @@
+/* Reading first; explanations of the prototype live in presentation annotations. */
+.report-body .reminder-card{padding:26px 0 30px;border-bottom:1px solid var(--line);max-width:880px}
+.reminder-card .report-alert-title{gap:9px;flex-wrap:wrap;margin-bottom:9px;align-items:center}
+.reminder-security{font-size:18px;font-weight:650;color:var(--text);text-decoration:none}
+.reminder-security:hover{text-decoration:underline;text-underline-offset:4px}
+.reminder-card .brief-reason-tag{font-size:12px;padding:2px 7px}
+.reminder-card h3{font-size:16px!important;font-weight:550;line-height:1.65;margin:8px 0}
+.reminder-card .report-event-title{color:var(--text);text-decoration:none}
+.reminder-card .report-event-title:hover{color:var(--orange);text-decoration:underline;text-underline-offset:4px}
+.reminder-card .report-attribution{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;margin:8px 0 13px;font-size:12px;color:var(--muted)}
+.reminder-source,.reminder-sources{color:var(--muted);font:inherit;text-decoration:none;background:none;border:0;padding:0;cursor:pointer}
+.reminder-source:hover,.reminder-sources:hover{color:var(--orange);text-decoration:underline}
+.reminder-quote-date{display:block;font-size:12px;color:var(--muted)}
+.report-body .reminder-analysis{max-width:none;padding:18px 20px;border:0;border-radius:8px;background:var(--orange-soft)}
+.report-body .reminder-analysis p{font-size:16px;line-height:1.8;margin:0 0 12px;overflow-wrap:anywhere;color:var(--text)}
+.reminder-analysis p>strong{display:inline!important;margin-right:10px;color:var(--orange);font-size:14px;white-space:nowrap}
+.reminder-analysis p:nth-of-type(2)>strong{color:var(--text)}
+.reminder-actions{border-top:1px solid var(--line);padding-top:12px;display:flex;align-items:flex-start;gap:12px;justify-content:space-between}
+.reminder-entry-actions{justify-content:flex-start;align-items:center;flex-wrap:wrap}
+.reminder-entry-actions .button{min-height:44px;margin:0;font-size:13px;white-space:normal}
+.reminder-assistant-questions{display:grid;gap:8px;margin:14px 0}
+.reminder-assistant-questions .suggestion{text-align:left;white-space:normal;overflow-wrap:anywhere;min-height:44px}
+.reminder-analysis .reminder-question{display:flex;gap:10px;align-items:baseline;text-align:left;padding:3px 0;margin:0;border:0;background:none;color:var(--orange);font:inherit;font-size:14px;line-height:1.7;cursor:pointer;min-width:0}
+.reminder-question-label{font-size:12px;white-space:nowrap;color:var(--muted)}
+.reminder-question:hover>span:last-child{text-decoration:underline;text-underline-offset:3px}
+.reminder-analysis .reminder-track{display:inline-flex;align-items:center;gap:5px;flex-shrink:0;white-space:nowrap;font:inherit;font-size:13px;padding:6px 10px;border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:5px;cursor:pointer;margin:0}
+.reminder-track .icon{width:14px;height:14px}.reminder-track:hover{border-color:var(--orange);color:var(--orange)}
+.reminder-more{margin-top:8px}.reminder-more summary{width:max-content;font-size:12px;color:var(--muted);cursor:pointer;padding:4px 0}.reminder-more[open] summary{margin-bottom:5px}
+.reminder-card a:focus-visible,.reminder-card button:focus-visible,.reminder-card summary:focus-visible{outline:2px solid var(--orange);outline-offset:4px;border-radius:3px}
+.brief-personal-alerts:not(:has(>.reminder-card))>.brief-other-materials{margin-top:0}
+@media(max-width:700px){.report-body .reminder-card{padding:20px 0}.report-body .reminder-analysis{padding:14px}.reminder-actions{flex-direction:column;gap:10px}.reminder-analysis p{font-size:15px}.reminder-card .report-attribution{gap:6px 10px}}
+
+#briefView:has(.reminder-card) .method-brief{display:none}
+.presentation-on #briefView:has(.reminder-card) .method-brief{display:block}
