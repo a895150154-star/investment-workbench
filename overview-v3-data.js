@@ -1,8 +1,8 @@
 /* V3.0: fixed fictional data only. No service calls; never seeded into user portfolios. */
 window.overviewV3Data = (() => {
   const labels={unset:'未设置投资习惯',short:'短线交易',swing:'波段配置',long:'中长期持有'};
-  const names={brief:'个人简报','holdings-news':'我的标的动态',events:'事件捕手','sector-flows':'板块资金','themes-etf':'主题与ETF',sectors:'关注行业',indexes:'大盘指数',market:'市场概览',stocks:'股票工作台'};
-  const orders={unset:['brief','indexes','events','holdings-news','sectors','sector-flows','themes-etf','market','stocks'],short:['brief','holdings-news','events','sector-flows','market','stocks','themes-etf','sectors','indexes'],swing:['brief','sectors','sector-flows','themes-etf','holdings-news','events','stocks','indexes','market'],long:['brief','holdings-news','sectors','indexes','themes-etf','events','stocks','sector-flows','market']};
+  const names={brief:'个人简报','holdings-news':'我的标的动态',events:'事件捕手','sector-flows':'板块资金',sectors:'关注行业',indexes:'大盘指数',market:'市场概览',stocks:'股票工作台'};
+  const orders={unset:['brief','indexes','events','holdings-news','sectors','sector-flows','market','stocks'],short:['brief','holdings-news','events','sector-flows','market','stocks','sectors','indexes'],swing:['brief','sectors','sector-flows','holdings-news','events','stocks','indexes','market'],long:['brief','holdings-news','sectors','indexes','events','stocks','sector-flows','market']};
   const rules={unset:'持仓在前，同组按发布时间从新到旧。',short:'先看你的标的异动、事件和板块资金；同组按涨跌幅绝对值，再按资金绝对值排序。',swing:'先看关注行业、板块资金和主题；同组按板块近20日强弱变化排序。',long:'先看经营变化、行业和指数；同组优先业绩、订单、研报变化，再按持仓比重。'};
   const eventTypes=['异动','资金','热点','板块轮动','公告','政策','业绩','订单','研报观点'];
   const templates=['订单落地','收入确认','产品或产能进展'];

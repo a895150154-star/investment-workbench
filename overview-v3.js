@@ -136,7 +136,7 @@ function reminder(code){
 // Register the V3 catalogue before reloading: legacy load() had filtered new ids.
 const previousLayout=read(LAYOUT,null);
 const oldCatalog=catalog.filter(w=>w.id!=='funds');
-const specs=[...oldCatalog,{id:'holdings-news',icon:'activity',wide:true,desc:'持仓与自选的事件、提醒和业务进展'},{id:'sector-flows',icon:'chart-no-axes-combined',wide:true,desc:'行业与概念的资金变化'},{id:'themes-etf',icon:'layers',wide:true,desc:'主题看点、关联个股与ETF'}];
+const specs=[...oldCatalog,{id:'holdings-news',icon:'activity',wide:true,desc:'持仓与自选的事件、提醒和业务进展'},{id:'sector-flows',icon:'chart-no-axes-combined',wide:true,desc:'行业与概念的资金变化'}];
 catalog.splice(0,catalog.length,...Object.keys(D.names).map(id=>({...specs.find(w=>w.id===id),id,title:D.names[id]})));
 const mapId=id=>id==='funds'?'sector-flows':id;
 function migrate(){
@@ -151,7 +151,7 @@ function migrate(){
  if(raw?.overviewV3!==1){
  const legacyBaselines=[['brief','indexes','market','events','stocks','sectors','sector-flows'],['indexes','market','brief','events','stocks','sectors','sector-flows']];
  if(!state.profileOrderMode)state.profileOrderMode=legacyBaselines.some(a=>a.filter(id=>state.order.includes(id)).join('|')===state.order.join('|'))?'auto':'manual';
- for(const id of ['holdings-news','themes-etf'])if(!state.order.includes(id)){const preferred=D.orders[actual()],next=preferred.slice(preferred.indexOf(id)+1).find(k=>state.order.includes(k));state.order.splice(next?state.order.indexOf(next):state.order.length,0,id);}
+ for(const id of ['holdings-news'])if(!state.order.includes(id)){const preferred=D.orders[actual()],next=preferred.slice(preferred.indexOf(id)+1).find(k=>state.order.includes(k));state.order.splice(next?state.order.indexOf(next):state.order.length,0,id);}
  state.overviewV3=1;
  }
 }
@@ -164,7 +164,7 @@ renderWidgets=function(...args){
  if(rendering)return;rendering=true;const savedOrder=state.order;
  try{state.order=savedOrder.filter(id=>!['holdings-news','sector-flows','themes-etf'].includes(id));renderBefore(...args);}finally{state.order=savedOrder;rendering=false;}
  const grid=$('#widgetGrid');if(!grid)return;
- const bodies={'holdings-news':stockNewsBody,'sector-flows':flowsBody,'themes-etf':themesBody};
+ const bodies={'holdings-news':stockNewsBody,'sector-flows':flowsBody};
  Object.entries(bodies).forEach(([id,body])=>{if(state.order.includes(id))grid.insertAdjacentHTML('beforeend',newWidget(id,body()));});
  order().forEach(id=>{const n=grid.querySelector(`[data-widget="${id}"]`);if(n)grid.append(n);});
  if(mode()==='unset'){
@@ -203,7 +203,7 @@ window.addEventListener('research-profile-saved',()=>{preview=null;expanded.clea
 const oldShowBrief=showBrief;showBrief=function(...args){const result=oldShowBrief(...args);decorate();return result;};
 const oldPage=page;page=function(...args){const result=oldPage(...args);queueMicrotask(decorate);return result;};
 const oldHome=home;home=function(...args){const result=oldHome(...args);decorate();return result;};
-function jump(id,focus){if(!state.order.includes(id)){state.order.push(id);save();}state.collapsed=state.collapsed.filter(x=>x!==id);home();requestAnimationFrame(()=>{const node=$(`[data-widget="${id}"]`);if(focus){const row=node?.querySelector(`[data-v3-security="${focus}"]`);if(focus==='688041'&&row?.querySelector('[data-v3-haiguang]'))row.querySelector('[data-v3-haiguang]').open=true;(row||node)?.scrollIntoView({block:'start'});}else node?.scrollIntoView({block:'start'});});}
+function jump(id,focus){if(id==='themes-etf')return allEvents({driverTab:'themes'});if(!state.order.includes(id)){state.order.push(id);save();}state.collapsed=state.collapsed.filter(x=>x!==id);home();requestAnimationFrame(()=>{const node=$(`[data-widget="${id}"]`);if(focus){const row=node?.querySelector(`[data-v3-security="${focus}"]`);if(focus==='688041'&&row?.querySelector('[data-v3-haiguang]'))row.querySelector('[data-v3-haiguang]').open=true;(row||node)?.scrollIntoView({block:'start'});}else node?.scrollIntoView({block:'start'});});}
 const removedSections={alerts:'holdings-news','research-review':'holdings-news',themes:'themes-etf',etfs:'themes-etf',industries:'sectors',flows:'sector-flows','major-events':'events'};
 const oldRestore=restoreRoute;restoreRoute=function(r,...args){if(r?.type==='brief'&&removedSections[r.section])return jump(removedSections[r.section]);return oldRestore(r,...args);};
 window.addEventListener('hashchange',e=>{const section=new URLSearchParams(e.newURL.split('?').at(-1)).get('section');if(e.newURL.includes('/briefs/')&&removedSections[section])queueMicrotask(()=>jump(removedSections[section]));},true);
