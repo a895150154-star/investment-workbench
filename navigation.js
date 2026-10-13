@@ -35,7 +35,7 @@
     if (r.type === 'overview') return '#/overview';
     if (r.type === 'global-indices') return '#/global-indices'+(r.section&&r.section!=='all'?'?section='+enc(r.section):'');
     if (r.type === 'market-overview') return '#/market-overview?tab='+(['breadth','turnover','style','limits'].includes(r.tab)?r.tab:'breadth');
-    if (r.type === 'tasks') return '#/tracking?tab='+(r.tab==='notices'?'notices':'tasks')+(r.security?'&security='+encodeURIComponent(r.security):'')+'&scene='+(r.scene||'demo')+(r.issueId?'&issue='+enc(r.issueId):'');
+    if (r.type === 'tasks') return '#/tracking?tab='+(r.tab==='notices'?'notices':'tasks');
     if (r.type === 'stock-workbench' || ['watchlist','holdings'].includes(r.type)) return '#/stock-workbench?tab='+(['watchlist','holdings'].includes(r.type)?r.type:['watchlist','holdings','triggers'].includes(r.tab)?r.tab:'watchlist');
     if (r.type === 'library') return '#/archive';
     if (r.type === 'events') return window.eventDriver?.radarURL(r) || '#/radar';

@@ -67,19 +67,7 @@
     if(!current.materials.length)return '';
     return `<section class="research-materials"><h3>本期模拟进展 · ${esc(issue.day)}</h3><p>${current.materials.length} 条模拟资料 · ${current.signals.length} 条模拟信号。模拟内容与上方真实来源分开。</p>${current.materials.map(m=>`<p><strong>${esc(m.title)} · 模拟资料</strong><br>${esc(m.time)}（演示时间）<br>${esc(m.text)}<br>${current.signals.some(s=>s.materialId===m.id)?'已命中当时的追踪条件，仍需核验原始披露。':'录入时未命中已选条件，未生成信号。'}</p>`).join('')}</section>`;
   }
-  function manager(issue){
-    const state=researchTracking.get(),record=state.record,current=researchTracking.forDay(issue.day),outcome=outcomes[issue.day];
-    return `<section class="research-track-manager" aria-label="海光研究追踪"><div class="research-track-meta"><span class="research-demo-label">海光信息 · 事件进展 · 本地演示</span><span>${esc(statusText(record))}</span></div><h2>从研究验证，到进展回顾</h2><p class="research-demo-label">研究背景：${esc(researchDemo.sources[0].title)}</p>
-      ${record?`<p><strong>已选观察项</strong> ${esc(labels(record.observations))}</p><p>${esc(record.frequency)} · 工作台内提醒</p>`:'<p>先确认观察项，再模拟客户适配、交付或采购进展。</p>'+legacyNote()}
-      <div class="flow-actions"><button class="button primary" data-event-track="${researchDemo.id}">${record?'修改观察项与频率':'设置海光追踪'}</button>${record&&record.status!=='stopped'?'<button class="button" data-research-track-stop>停止追踪</button>':''}${eventLink(issue,'返回海光事件')}</div>
-      ${record&&record.status==='stopped'?'<p>追踪已停止，历史信号保留；演示用户的海光长期关注关系保持不变。</p>':''}
-      <section class="research-simulation"><h3>模拟新进展</h3><p>${esc(issue.day)} · 手动选择一条模拟资料，按已保存条件匹配。资料内容并非真实披露。</p><div class="research-simulation-options">${researchTracking.samples.map(s=>`<button type="button" class="button" data-research-simulate="${s.id}" data-research-day="${issue.day}">模拟${s.title}</button>`).join('')}</div><p id="researchSimulationResult" role="status" class="${outcome?.ok===false?'flow-error':'research-demo-label'}">${esc(outcome?'上次模拟结果：'+outcome.message:researchTracking.readError|| (current.materials.length?'本期模拟资料与信号已恢复，详见下方记录。':'尚未模拟本期新进展。保存追踪本身不会生成信号。'))}</p><div class="flow-actions">${reportLink(reportIssue(issue.day,'evening'),'查看同日晚报回顾')}</div></section>
-      <div class="research-track-meta"><h3>本期进展与信号</h3><span>${current.materials.length} 条模拟资料 · ${current.signals.length} 条模拟信号</span></div>
-      ${current.signals.length?current.signals.map(s=>signal(s,issue)).join(''):'<p>本期暂无新触发。</p>'}
-      ${current.materials.length?`<details class="research-materials"><summary>查看本期模拟资料（${current.materials.length}）</summary>${current.materials.map(m=>`<p><strong>${esc(m.title)} · 模拟资料</strong><br>${esc(m.time)}（演示时间）<br>${esc(m.text)}${!current.signals.some(s=>s.materialId===m.id)?'<br>录入时未命中已选条件；有新资料，不等于有新触发。':''}</p>`).join('')}</details>`:''}
-      ${state.signals.some(s=>s.day!==issue.day)?`<details class="research-materials"><summary>历史模拟信号</summary>${state.signals.filter(s=>s.day!==issue.day).map(s=>signal(s,reportIssue(s.day,'evening'))).join('')}</details>`:''}
-      </section>`;
-  }
+  function manager(){return '';}
   function review(issue,compact=false){
     const current=researchTracking.forDay(issue.day),historical=researchDemo.sources.length>0;
     const price=reviewModes[issue.id]!=='progress',hasProgress=current.materials.length>0||current.signals.length>0;
