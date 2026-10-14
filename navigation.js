@@ -36,7 +36,7 @@
     if (r.type === 'global-indices') return '#/global-indices'+(r.section&&r.section!=='all'?'?section='+enc(r.section):'');
     if (r.type === 'market-overview') return '#/market-overview?tab='+(['breadth','turnover','style','limits'].includes(r.tab)?r.tab:'breadth');
     if (r.type === 'tasks') return '#/tracking?tab='+(r.tab==='notices'?'notices':'tasks');
-    if (r.type === 'stock-workbench' || ['watchlist','holdings'].includes(r.type)) return '#/stock-workbench?tab='+(['watchlist','holdings'].includes(r.type)?r.type:['watchlist','holdings','triggers'].includes(r.tab)?r.tab:'watchlist');
+    if (r.type === 'stock-workbench' || ['watchlist','holdings'].includes(r.type)) return '#/stock-workbench?tab='+(['watchlist','holdings'].includes(r.type)?r.type:['watchlist','holdings','triggers'].includes(r.tab)?r.tab:'watchlist')+(r.trackingTab==='tasks'?'&view=tasks':'');
     if (r.type === 'library') return '#/archive';
     if (r.type === 'events') return window.eventDriver?.radarURL(r) || '#/radar';
     if (r.type === 'brief') return '#/briefs/' + r.issueId.replace('_', '/') + (r.section ? '?section=' + enc(r.section) : '');
@@ -54,8 +54,8 @@
       const parts = path.split('/').filter(Boolean), issue = issueFromId(args.get('issue')) || briefSnapshot().displayed;
       if (parts[0] === 'global-indices') return {type:'global-indices',section:['common','china','global','commodities','fx'].includes(args.get('section'))?args.get('section'):'all'};
       if (parts[0] === 'market-overview') return {type:'market-overview',tab:['breadth','turnover','style','limits'].includes(args.get('tab'))?args.get('tab'):'breadth'};
-      if (parts[0] === 'tracking') return {type:'tasks',tab:args.get('tab')==='notices'?'notices':'tasks',security:args.get('security')||'',scene:args.get('scene')||'demo',issueId:issue.id};
-      if (parts[0] === 'stock-workbench') return {type:'stock-workbench',tab:['watchlist','holdings','triggers'].includes(args.get('tab'))?args.get('tab'):'watchlist'};
+      if (parts[0] === 'tracking') return {type:'stock-workbench',tab:'triggers',trackingTab:args.get('tab')==='notices'?'notices':'tasks'};
+      if (parts[0] === 'stock-workbench') return {type:'stock-workbench',tab:['watchlist','holdings','triggers'].includes(args.get('tab'))?args.get('tab'):'watchlist',trackingTab:args.get('view')==='tasks'?'tasks':'notices'};
       if (['watchlist','holdings'].includes(parts[0])) return {type:'stock-workbench',tab:parts[0]};
       if (parts[0] === 'archive') return {type:'library'};
       if (parts[0] === 'radar') return window.eventDriver?.parseRadar(args) || {type:'events'};
@@ -96,7 +96,7 @@
     if (r.type === 'stock-workbench' || ['watchlist','holdings'].includes(r.type)) return '股票工作台';
     if (r.type === 'brief') return issueLabel(issueFromId(r.issueId));
     if (r.type === 'brief-theme') return '光模块与算力互联';
-    return r.company || ({events:'事件列表',event:'事件详情',theme:'主题详情',library:'早期原型记录',watchlist:'自选股',holdings:'我的持仓',tasks:'追踪管理'}[r.type]) || '上一页';
+    return r.company || ({events:'事件列表',event:'事件详情',theme:'主题详情',library:'早期原型记录',watchlist:'自选股',holdings:'我的持仓',tasks:'订阅与提醒'}[r.type]) || '上一页';
   }
   function fallback(r) {
     const extension=opportunityFallback(r);if(extension)return extension;
@@ -118,7 +118,7 @@
     if (!replace) focusHeading();
     else if (pendingFocus) $(pendingFocus)?.focus({preventScroll:true});
   }
-  const names = ['showGlobalIndices','showMarketOverview','showReviewAccount','showEveningDetail','showOpportunities','showThemeFeed','showRelatedETFs','showTrackedEvent','home','showBrief','showBriefTheme','briefQuote','showEvent','showTheme','allEvents','quote','showTasks','taskDetail','showLibrary','showStudy','showResult','openNotice'];
+  const names = ['showEtfIndex','showTrackingHistory','showGlobalIndices','showMarketOverview','showReviewAccount','showEveningDetail','showOpportunities','showThemeFeed','showRelatedETFs','showTrackedEvent','home','showBrief','showBriefTheme','briefQuote','showEvent','showTheme','allEvents','quote','showTasks','taskDetail','showLibrary','showStudy','showResult','openNotice'];
   names.forEach(name => {
     const original = window[name];
     window[name] = function(...args) {
@@ -129,7 +129,7 @@
       try { return original.apply(this,args); }
       finally {
         rendering--;
-        if (outer) finalise(before, (name === 'showBriefTheme' && args[3] === true) || (name === 'showMarketOverview' && before?.route.type === 'market-overview') || (name === 'showGlobalIndices' && before?.route.type === 'global-indices') || (name === 'showReviewAccount' && before?.route.type === 'stock-workbench') || (['showOpportunities','showRelatedETFs'].includes(name) && args[1] === true));
+        if (outer) finalise(before, (name === 'showBriefTheme' && args[3] === true) || (name === 'showMarketOverview' && before?.route.type === 'market-overview') || (name === 'showGlobalIndices' && before?.route.type === 'global-indices') || (name === 'showReviewAccount' && before?.route.type === 'stock-workbench') || (['showEveningDetail','showOpportunities','showRelatedETFs'].includes(name) && args[1] === true));
       }
     };
   });
@@ -140,7 +140,7 @@
       const r = next.route, parent = next.trail?.at(-1)?.route || fallback(r);
       if ($('#modal').open) { sourceParent = null; $('#modal').close(); }
       if (mobile.matches) closeAssistant();
-      if (['evening-board','evening-event','evening-source','opportunities','theme-feed','theme-etfs','event-detail'].includes(r.type)) renderOpportunityRoute(r);
+      if (['reminder-history','evening-board','evening-event','evening-source','opportunities','theme-feed','theme-etfs','event-detail','etf-index'].includes(r.type)) renderOpportunityRoute(r);
       else if (r.type === 'global-indices') showGlobalIndices(r.section);
       else if (r.type === 'market-overview') showMarketOverview(r.tab);
       else if (r.type === 'brief') showBrief(r.issueId);
@@ -149,7 +149,7 @@
       else if (r.type === 'quote') quote(r.company);
       else if (r.type === 'task-detail') taskDetail(r.id);
       else if (r.type === 'notice') openNotice(r.id);
-      else if (r.type === 'stock-workbench' || ['watchlist','holdings'].includes(r.type)) showReviewAccount(r.type==='stock-workbench'?r.tab:r.type);
+      else if (r.type === 'stock-workbench' || ['watchlist','holdings'].includes(r.type)) showReviewAccount(r.type==='stock-workbench'?r.tab:r.type,r.trackingTab);
       else if (r.type === 'events') allEvents(r);
       else if (r.type === 'tasks') {taskTab = r.tab || 'tasks'; trackingSignalKey=r.security||''; trackingCenter.mode=r.scene||'demo';route=r;showTasks();}
       else if (r.type === 'study' && r.study) showStudy(r.study);
@@ -270,7 +270,7 @@
     $('#contextName').textContent=p.title;
     $('#persistentContext').hidden=true;
     $('.composer>div>span').textContent='提问将携带当前页面信息';
-    if (['global-indices','market-overview','tasks','events','stock-workbench','watchlist','holdings','library','evening-board','evening-event','evening-source','brief-theme','brief-quote','opportunities','theme-feed','theme-etfs','event-detail'].includes(route.type)) {
+    if (['reminder-history','global-indices','market-overview','tasks','events','stock-workbench','watchlist','holdings','library','evening-board','evening-event','evening-source','brief-theme','brief-quote','opportunities','theme-feed','theme-etfs','event-detail','etf-index'].includes(route.type)) {
       $('#assistantContent').innerHTML=`<h2 class="assistant-greeting">了解${esc(p.title)}</h2><p class="assistant-copy">${p.description}</p><div class="sample-notice">可以围绕当前内容继续提问。演示回答采用模拟内容，尚未调用真实 AI。</div>`;
     }
   }

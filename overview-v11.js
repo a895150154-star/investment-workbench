@@ -12,6 +12,7 @@ function initialize(){
  const layer=()=>layerPreview||(demoState==='new'?'猜你想看':currentPortfolio().some(s=>s.group==='holdings')?'持仓':currentPortfolio().some(s=>s.group==='watchlist')?'自选':'最近搜索');
  const dot='<span class="v11-dot" aria-label="演示数据">●</span>';
  function points(period,date){
+  if(period==='morning'&&window.morningAlerts)return window.morningAlerts.preview();
   const kind=periodName(period),data=D.cards[kind][date],layers=['持仓','自选','最近搜索','猜你想看'];
   const start=date==='10.12'?layer():'持仓';
   let out=[];
@@ -28,7 +29,7 @@ function initialize(){
  }
  function card(period){
   const date=dates[period],kind=periodName(period),data=D.cards[kind][date];
-  return `<section class="v11-card" data-v11-period="${period}" data-v11-date="${date}"><div class="v11-card-top"><h3>${kind} · ${date}</h3><div class="v11-history"><button class="v11-history-button" data-v11-history="${period}" aria-label="${kind}${date}历史" aria-haspopup="menu" aria-expanded="false">${date} · 历史</button><div class="v11-history-menu" role="menu" hidden>${D.dates.map(d=>`<button role="menuitem" data-v11-date-pick="${period}" data-date="${d}" aria-current="${d===date}">${d} ${kind}</button>`).join('')}</div></div></div><p class="v11-conclusion">${esc(data.c)}</p><div class="v11-items">${points(period,date).map(([l,name,change,tone,event])=>`<article class="v11-item"><div class="v11-item-first"><span class="v11-layer">${esc(l)}</span><strong>${esc(name)}</strong><span class="v11-change ${tone}">${esc(change)}${dot}</span></div><p class="v11-event">${esc(event)}</p></article>`).join('')}</div><p class="v11-trend">${esc(data.t)}</p><a class="v11-full" href="#/briefs/2026-${date.replace('.','-')}/${period}" data-v11-full="${period}">查看完整简报</a></section>`;
+  return `<section class="v11-card" data-v11-period="${period}" data-v11-date="${date}"><div class="v11-card-top"><h3>${kind} · ${date}</h3><div class="v11-history"><button class="v11-history-button" data-v11-history="${period}" aria-label="${kind}${date}历史" aria-haspopup="menu" aria-expanded="false">${date} · 历史</button><div class="v11-history-menu" role="menu" hidden>${D.dates.map(d=>`<button role="menuitem" data-v11-date-pick="${period}" data-date="${d}" aria-current="${d===date}">${d} ${kind}</button>`).join('')}</div></div></div><p class="v11-conclusion">${esc(period==='morning'&&window.morningAlerts?window.morningAlerts.summary:data.c)}</p><div class="v11-items">${points(period,date).map(([l,name,change,tone,event])=>`<article class="v11-item"><div class="v11-item-first"><span class="v11-layer">${esc(l)}</span><strong>${opportunitySecurity(name)?opLink(esc(name),opQuoteRoute(name,`2026-${date.replace('.','-')}_${period}`),'text-action'):esc(name)}</strong><span class="v11-change ${tone}">${esc(change)}${dot}</span></div><p class="v11-event">${esc(event)}</p></article>`).join('')}</div>${period==='morning'&&window.morningAlerts?'':`<p class="v11-trend">${esc(data.t)}</p>`}<a class="v11-full" href="#/briefs/2026-${date.replace('.','-')}/${period}" data-v11-full="${period}">查看完整简报</a></section>`;
  }
  function fitCard(c){
   const stamp=c.getBoundingClientRect().width.toFixed(2)+'|'+c.textContent;
@@ -38,7 +39,7 @@ function initialize(){
   const conclusion=c.querySelector('.v11-conclusion'),first=items[0];
   const tooLong=conclusion.getBoundingClientRect().height>44.5||items.some(n=>n.querySelector('.v11-item-first').getBoundingClientRect().height>22.5||n.querySelector('.v11-event').getBoundingClientRect().height>22.5);
   if(tooLong&&items.length>1)items.at(-1).hidden=true;
-  const trend=c.querySelector('.v11-trend');trend.hidden=false;
+  const trend=c.querySelector('.v11-trend');if(!trend)return;trend.hidden=false;
   if(trend.getBoundingClientRect().height>22.5)trend.hidden=true;
  }
  function note(){const n=$('#profileLayoutNote');if(!n)return;const names=viewOrder().map(id=>O.names[id]);if(V.mode()==='unset')names.splice(3,0,'让工作台更懂你');const html=`<div>${state.profileOrderMode==='manual'?'<span>手动顺序</span>':''}<button class="v11-sort" data-v11-auto>按画像排序</button></div><p class="v3-annotation">按已保存习惯 · ${O.labels[V.mode()]} · ${O.rules[V.mode()]}</p><details class="v11-order-details"><summary>查看当前顺序</summary><span>${names.join(' → ')}</span></details>`;const key=JSON.stringify([state.profileOrderMode,V.mode(),names]);if(n.dataset.v11NoteKey!==key){n.innerHTML=html;n.dataset.v11NoteKey=key;}}

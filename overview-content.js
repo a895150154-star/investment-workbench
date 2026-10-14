@@ -42,7 +42,6 @@ widgetFooter=function(id){const issue=briefSnapshot().displayed;
 };
 // Names describe what the retained material actually contains; user custom titles win.
 catalog.find(w=>w.id==='market').title='市场脉搏';
-catalog.find(w=>w.id==='sectors').title='关注行业';
 catalog.find(w=>w.id==='funds').title='资金观察';
 document.addEventListener('click',e=>{const b=e.target.closest('[data-editorial-ask]');if(b)editorialAsk(b.dataset.editorialAsk,null,null,b.dataset.editorialIssue);});
 

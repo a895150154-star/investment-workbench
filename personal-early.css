@@ -1,0 +1,33 @@
+/* Object-based morning briefing and its assistant response. */
+.pe-section{scroll-margin-top:110px;--pe-blue:#8ab4ff;--pe-blue-hover:#bdd5ff;--pe-bg:#152640;--pe-hover:#1c3150;--pe-border:#304c70}
+.light .pe-section{scroll-margin-top:110px;--pe-blue:#2563eb;--pe-blue-hover:#1d4ed8;--pe-bg:#f2f6ff;--pe-hover:#e8f0ff;--pe-border:#d6e4ff}
+#briefView .pe-card{padding:24px 0 28px;border-bottom:1px solid var(--line);scroll-margin-top:110px}
+#briefView .pe-card:last-child{border-bottom:0}
+.pe-card-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+#briefView .pe-card-head h3{font-size:17px;line-height:26px;margin:0;font-weight:600}
+.pe-name:hover{color:var(--pe-blue);text-decoration:underline;text-underline-offset:4px}
+.pe-change{font-size:16px;font-weight:600;font-variant-numeric:tabular-nums}.pe-change.neutral{color:var(--muted)}
+.pe-change.up{color:var(--red)}.pe-change.down{color:var(--green)}
+.pe-relation{font-size:11px;padding:1px 6px;border-radius:4px;background:var(--card-raised);color:var(--muted)}
+#briefView .pe-news{list-style:none;counter-reset:pe-news;padding:0;margin:0 0 18px;display:grid;gap:16px}
+.pe-news li{counter-increment:pe-news;position:relative;padding-left:28px}
+.pe-news li:before{content:counter(pe-news);position:absolute;left:0;top:3px;width:18px;height:18px;text-align:center;font-size:11px;line-height:18px;color:var(--muted);background:var(--card-raised);border-radius:3px}
+#briefView .pe-news p{font-size:14px;line-height:25px;margin:0 0 6px;color:var(--text)}
+.pe-impact{display:inline-block;white-space:nowrap;color:var(--red);border:1px solid color-mix(in srgb,var(--red) 25%,transparent);border-radius:3px;padding:0 4px;font-size:11px;line-height:18px;margin-left:4px}
+.pe-source{display:inline-flex;gap:4px;align-items:center;padding:3px 0;color:var(--muted);font-size:12px;line-height:20px}.pe-source .icon{width:13px;height:13px}
+.pe-source:hover{color:#2563eb!important}
+#briefView .pe-analysis{width:100%;display:grid;grid-template-columns:72px minmax(0,1fr);gap:8px 14px;padding:18px 20px;border:1px solid var(--pe-border);border-radius:8px;background:var(--pe-bg);text-align:left;color:var(--text);cursor:pointer;scroll-margin-top:110px}
+#briefView .pe-analysis:hover{background:var(--pe-hover);border-color:var(--pe-blue);color:var(--text)}
+.pe-analysis-label{font-size:13px;font-weight:600;color:var(--pe-blue);line-height:25px}
+.pe-analysis-copy{font-size:13px;line-height:25px}
+.pe-analysis-action{grid-column:2;display:flex;justify-content:flex-end;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--pe-blue);padding-top:4px}
+.pe-analysis-action .icon{width:16px;height:16px}
+#briefView .pe-analysis:hover .pe-analysis-action{color:var(--pe-blue-hover);text-decoration:underline;text-underline-offset:3px}
+#briefView .pe-analysis:focus-visible,.pe-name:focus-visible{outline:2px solid var(--pe-blue);outline-offset:3px}
+.pe-source:focus-visible,.pe-return:focus-visible,.pe-context summary:focus-visible{outline:2px solid #2563eb;outline-offset:3px}
+.pe-answer{font-size:13px;line-height:1.8;overflow-wrap:anywhere}.pe-answer h3{font-size:14px;margin:22px 0 8px;color:var(--text)}.pe-answer p{margin:8px 0;color:var(--muted)}
+.pe-answer .pe-answer-context{font-size:12px}.pe-context{padding:10px 0;border-bottom:1px solid var(--line)}.pe-context summary{cursor:pointer;color:var(--muted);font-size:12px}
+.pe-conclusion{border-left:3px solid #2563eb;padding-left:12px}.pe-conclusion p{color:var(--text)}
+.pe-evidence{width:100%;border-collapse:collapse;table-layout:fixed;font-size:11px;line-height:1.8}.pe-evidence th,.pe-evidence td{padding:9px 5px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line);overflow-wrap:anywhere}.pe-evidence th{color:var(--muted);font-weight:500}
+.pe-return{color:#2563eb;display:inline-flex;align-items:center;gap:8px;padding:14px 0;font-size:12px}.pe-source-detail{font-size:14px;line-height:1.8}.pe-source-detail h3{margin:18px 0 8px}.pe-source-status{color:var(--muted);font-size:12px;margin-top:16px}
+@media(max-width:850px){#briefView .pe-analysis{grid-template-columns:1fr;padding:16px;gap:6px}.pe-analysis-action{grid-column:1}}

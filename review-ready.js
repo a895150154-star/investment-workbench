@@ -17,6 +17,7 @@ showTasks=function(){
 // One sidebar destination; retain legacy entry arguments and share existing records.
 let reviewAccountTab='watchlist';
 function reviewWorkspaceTriggers(){
+ if(typeof trackingCenter!=='undefined')return trackingCenter.workspaceContent();
  const previous=stockTab;
  try{
   stockTab='触发';
@@ -46,7 +47,7 @@ stockBody=function(){
  return `<div class="stock-body review-stock-body"><div class="table-tabs"><button data-stock-tab="自选股" class="${stockTab==='自选股'?'selected':''}">自选股</button><button data-stock-tab="持仓" class="${stockTab==='持仓'?'selected':''}">持仓</button><button data-stock-tab="触发">触发</button><span>本地关注清单</span></div>${stockTab==='持仓'?holdingsStore.summary():list.length?list.map(q=>`<div class="review-stock-row"><div>${opLink(esc(q.name),opQuoteRoute(opSecurityKey(q),issue.id))}<small>${esc(q.code||'代码未获取')} · ${q.reference?'截图参考，时点未核验':'公开行情快照'}</small></div><div>${opPrice(q)}${opChange(q)}</div></div>`).join(''):`<p class="data-message">还没有添加自选。从标的详情点击“自选”开始。</p>${reviewBrowse()}`}<div class="review-stock-more"><button class="text-action" data-review-account="watchlist">管理自选</button><button class="text-action" data-flow="tasks">管理追踪与订阅</button></div></div>`;
 };
 const reviewPreviousFooter=widgetFooter;
-widgetFooter=function(id){return id==='stocks'?'<span>各标的来源与时点见详情</span><button class="text-action" data-flow="tasks">订阅与提醒 '+icon('arrow-up-right')+'</button>':reviewPreviousFooter(id);};
+widgetFooter=function(id){return id==='stocks'?'<span>各标的来源与时点见详情</span><a class="text-action" href="#/stock-workbench?tab=triggers&view=tasks">监控任务 '+icon('arrow-up-right')+'</a>':reviewPreviousFooter(id);};
 
 // Earlier research/version-comparison samples remain locally stored, outside the review path.
 showLibrary=function(){
@@ -97,7 +98,6 @@ $('#designNotes').onclick=reviewDesignNotes;
 $('.design-strip b').textContent='V2.30';
 $('.design-strip>span:nth-child(2)').textContent='演示模式 · 机会解读为模拟内容 · 尚未接入 AI 与监控';
 catalog.find(w=>w.id==='market').desc='阅读市场快照与本期解读';
-catalog.find(w=>w.id==='sectors').desc='从已有产业线索进入主题与关联标的';
 catalog.find(w=>w.id==='funds').desc='查看公司资金事项；不代表实时资金轮动';
 const reviewDecorate=opportunityDecorate;
 opportunityDecorate=function(){reviewDecorate();const n=route.type==='stock-workbench'?$('[data-existing="股票工作台"]'):route.type==='events'?$('[data-existing="资讯雷达"]'):null;if(n){markNav('');n.classList.add('active');n.setAttribute('aria-current','page');}};

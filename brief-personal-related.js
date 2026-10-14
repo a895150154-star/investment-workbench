@@ -35,6 +35,7 @@ function initialize(){
   return opLink(label,opThemeRoute(category.themeId,issue.id),'personal-relation').replace('<a ',`<a data-personal-category="${esc(m.name)}" `);
  }
  function relatedHTML(issue){
+  if(window.personalEarly)return window.personalEarly.section(issue);
   const rows=related();
   return `<section class="personal-theme-related" id="brief-related-macro" data-v3-keep-copy><h2>和我有关</h2>${rows.length?rows.map(r=>`<article class="personal-theme-event" data-personal-related="${r.id}"><h3>${esc(r.summary)}</h3><p class="personal-event-summary"><span class="personal-field-label">事件总结</span>${esc(r.events)}</p><div class="personal-associations"><span class="personal-field-label">关联</span>${r.matches.map(m=>relationHTML(m,issue)).join('')}</div><div class="personal-event-sources">${r.sources.map(s=>sourceHTML(s,issue)).join('')}</div></article>`).join(''):`<p class="personal-no-relations">${V.portfolio().length?'当前标的暂无已确认的主题关联，继续查看市场脉搏。':'添加持仓或自选后，按标的的板块、概念、指数和主题整理相关信息。'}</p>`}</section>`;
  }
@@ -60,12 +61,15 @@ function initialize(){
   const lines=[issueLabel(issue),'一页纸',''];
   const quick=[];
   if(targets){const names=[...targets.querySelectorAll('.v3-brief-stock .v3-security-heading strong')].map(clean);quick.push(names.length?'特别提醒：'+names.join('、'):clean(targets.querySelector('.v3-empty h3')||targets.querySelector('p')));}
-  if(relations){const titles=[...relations.querySelectorAll('.personal-theme-event h3')].map(clean);quick.push('和我有关：'+(titles.join('；')||clean(relations.querySelector('p'))));}
-  let news=[];if(pulse){let sibling=pulse.nextElementSibling;while(sibling&&!sibling.classList.contains('report-section-head')){news.push(...sibling.querySelectorAll('.report-news li'));sibling=sibling.nextElementSibling;}quick.push('市场脉搏：'+news.map(n=>clean(n.querySelector('[data-brief-action="news"]'))).filter(Boolean).join('；'));}
+  if(relations){const titles=[...relations.querySelectorAll('.personal-theme-event h3,.pe-card-head h3')].map(clean);quick.push('和我有关：'+(titles.join('；')||clean(relations.querySelector('p'))));}
+  let news=[];if(pulse){let sibling=pulse.nextElementSibling;while(sibling&&!sibling.classList.contains('report-section-head')){news.push(...sibling.querySelectorAll('.report-news li,.mp-news li'));sibling=sibling.nextElementSibling;}quick.push('市场脉搏：'+news.map(n=>clean(n.querySelector('[data-brief-action="news"],.mp-title'))).filter(Boolean).join('；'));}
+  const theme=root.querySelector('#brief-themes');if(theme&&window.morningThemePreview)quick.push('主题机会：'+window.morningThemePreview.data().name);
   lines.push('整页概括',...quick,'');
-  if(targets){lines.push('特别提醒');const rows=[...targets.querySelectorAll('.v3-brief-stock')];if(rows.length)rows.forEach(n=>lines.push(`${clean(n.querySelector('.v3-security-heading strong'))}（${clean(n.querySelector('.tag'))}）：${clean(n.querySelector('.v3-risk-opening'))} ${clean(n.querySelector('.v3-habit-line'))}`));else lines.push(clean(targets.querySelector('.v3-empty')||targets.querySelector('p')));lines.push('');}
-  if(relations){lines.push('和我有关');relations.querySelectorAll('.personal-theme-event').forEach(n=>{lines.push(clean(n.querySelector('h3')),clean(n.querySelector('.personal-event-summary')).replace(/^事件总结/,'事件总结：'),'关联：'+[...n.querySelectorAll('.personal-relation')].map(clean).join('；'),[...n.querySelectorAll('.personal-event-sources button')].map(clean).join('；'),'');});}
-  if(pulse){lines.push('市场脉搏');news.forEach(n=>lines.push(clean(n.querySelector('[data-brief-action="news"]')),clean(n.querySelector('p')),clean(n.querySelector('.brief-source')),''));}
+  if(targets){lines.push('特别提醒');const rows=[...targets.querySelectorAll('.v3-brief-stock')];if(rows.length)rows.forEach(n=>{lines.push(`${clean(n.querySelector('.v3-security-heading strong'))}（${clean(n.querySelector('.tag'))}）：${clean(n.querySelector('.v3-risk-opening'))} ${clean(n.querySelector('.v3-habit-line'))}`);if(n.matches('[data-ma-stock]'))lines.push(clean(n.querySelector('.ma-analysis')),clean(n.querySelector('.ma-question')));});else lines.push(clean(targets.querySelector('.v3-empty')||targets.querySelector('p')));lines.push('');}
+  if(relations&&window.personalEarly){lines.push('和我有关',...window.personalEarly.summary());}
+  else if(relations){lines.push('和我有关');relations.querySelectorAll('.personal-theme-event').forEach(n=>{lines.push(clean(n.querySelector('h3')),clean(n.querySelector('.personal-event-summary')).replace(/^事件总结/,'事件总结：'),'关联：'+[...n.querySelectorAll('.personal-relation')].map(clean).join('；'),[...n.querySelectorAll('.personal-event-sources button')].map(clean).join('；'),'');});}
+  if(pulse){lines.push('市场脉搏');news.forEach(n=>{if(n.matches('[data-mp-news]'))lines.push(clean(n.querySelector('p')),'');else lines.push(clean(n.querySelector('[data-brief-action="news"]')),clean(n.querySelector('p')),clean(n.querySelector('.brief-source')),'');});}
+  if(theme&&window.morningThemePreview)lines.push('主题机会',...window.morningThemePreview.summary(),'');
   return lines.join('\n');
  }
  document.addEventListener('click',e=>{

@@ -46,4 +46,14 @@ window.eventDriverData = {
  }
 };
 
+// Company-event examples from the user-provided AI涨乐 screenshots and share pages.
+window.eventDriverData.stocks.push(
+ {code:'002384',name:'东山精密',price:132.23,change:-5.38,flow:'−3.03亿',ratio:'0.82',sector:'元件',themeId:'optical-interconnect',sourceEvent:'driver-eml',asOf:'2026-10-14 · 参考截图'},
+ {code:'300922',name:'天秦装备',price:null,change:-3.99,sector:'军工',themeId:'',sourceEvent:'driver-acquisition',asOf:'2026-10-14 · 参考截图'}
+);
+window.eventDriverData.events.unshift(
+ {id:'driver-eml',title:'索尔思光电具备100G和200G EML光芯片量产能力',age:300,time:'10/14',tag:'产品技术创新',themeId:'optical-interconnect',stocks:['002384'],keywords:['光模块','光芯片','EML','东山精密'],source:'深交所互动易',referenceUrl:'https://ai.zhangle.com/nzl/event-conduction/focused-info-detail.html?repetId=127160',summary:'东山精密子公司索尔思光电采用IDM模式实现EML光芯片与光模块一体化布局，是国内少数具备100G和200G EML光芯片量产能力的企业，在当前高端EML光芯片供应紧缺环境下具备产能调配和交付响应优势。',takeaway:'索尔思光电为东山精密全资子公司，量产能力与其光通信业务直接相关。后续核对批量出货、交付与业务贡献。',stockImpacts:{'002384':{relation:'索尔思光电为东山精密全资子公司。',impact:'EML光芯片与光模块一体化布局，可能影响东山精密光通信业务的成本、交付与竞争力。量产能力已披露，后续经营贡献仍需结合实际出货和财报核对。'}},condition:'发布新公告或出现新资讯',prompt:'有新公告、新消息时提醒我'},
+ {id:'driver-acquisition',title:'天秦装备拟收购亿利华控股权',age:1220,time:'10/13 17:47',tag:'业务战略调整',themeId:'',stocks:['300922'],keywords:['军工','收购','天秦装备','亿利华'],source:'格隆汇',referenceUrl:'https://ai.zhangle.com/nzl/event-conduction/focused-info-detail.html?repetId=127142',summary:'天秦装备拟以一揽子增资及股权收购方式取得亿利华51.3469%股权，交易完成后亿利华将成为控股子公司并纳入合并报表；目前已完成尽职调查、资产评估，拟增资3000万元并以5815.50万元受让股权，交易对方作出业绩承诺及质押担保。',takeaway:'本次拟收购涉及天秦装备的业务扩张与后续并表。仍需关注交易完成情况及业务整合，不能将拟收购视为已经完成。',stockImpacts:{'300922':{relation:'天秦装备为此次拟增资及股权收购的主体。',impact:'取得控股权后拟将亿利华纳入合并报表。业务与盈利贡献取决于交易完成、整合及协同落地，后续核对公司披露。'}},condition:'发布新公告或出现新资讯',prompt:'有新公告、新消息时提醒我'}
+);
+
 window.eventDriverData.events.forEach(e=>{const names=e.stocks.map(code=>window.eventDriverData.stocks.find(q=>q.code===code)?.name||(code==='300980'?'祥源新材':'')).filter(Boolean);const name=names.join('、')||e.referenceStocks?.map(q=>q.name).join('、')||'关注标的';e.condition=name+'发布新公告或出现新资讯';e.prompt=name+'有新公告、新消息时提醒我';});

@@ -1,0 +1,52 @@
+/* Scoped to morning reminders; existing page palette and typography stay in use. */
+#briefView .ma-section{padding:0;scroll-margin-top:88px}
+#briefView .ma-section-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:10px}
+#briefView .ma-section-head h3{font-size:21px;line-height:30px;margin:0;font-weight:600}
+#briefView .ma-section-head h3 span{font-size:14px;color:var(--muted);font-weight:400;margin-left:8px}
+#briefView .ma-section-head>span,.ma-reference-note,.ma-answer-context,.ma-answer-note{font-size:12px;line-height:20px;color:var(--muted)}
+#briefView .ma-section .ma-card{padding:0 0 28px!important;margin:0 0 28px!important;border-bottom:1px solid var(--line)!important}
+#briefView .ma-section .ma-card:last-child{margin-bottom:0!important;border-bottom:0!important}
+.ma-card-head{display:flex;align-items:center;flex-wrap:wrap;gap:10px}
+#briefView .ma-stock-link{color:var(--text);text-decoration:none}
+#briefView .ma-stock-link strong{font-size:17px;font-weight:600;line-height:26px}
+.ma-stock-link:hover{text-decoration:underline;text-underline-offset:4px}
+#briefView .ma-change{color:var(--red);font-size:16px;font-weight:600;font-variant-numeric:tabular-nums}
+#briefView .ma-reason{font-size:11px;line-height:18px;padding:1px 6px;background:var(--surface-alt,var(--accent-soft));color:var(--muted);border-radius:4px}
+#briefView .ma-card-head{margin-bottom:12px}
+#briefView .ma-section-head{margin-bottom:22px}
+#briefView .ma-section .ma-summary{font-size:14px!important;line-height:24px!important;margin:0 0 8px!important;color:var(--text)!important}
+.ma-source{display:inline-flex;align-items:center;gap:4px;font-size:12px;line-height:20px;color:var(--muted);padding:3px 0;background:none;border:0;cursor:pointer}
+.ma-source .icon{width:13px;height:13px}
+.ma-source:hover{color:var(--accent)}
+.ma-sources{margin-bottom:14px}
+#briefView .ma-analysis{display:grid;gap:16px;padding:18px 20px;background:var(--accent-soft);border-radius:8px}
+#briefView .ma-analysis>div{display:grid;grid-template-columns:64px minmax(0,1fr);gap:14px}
+#briefView .ma-analysis h4{font-size:12px;line-height:24px;margin:0;font-weight:600;color:var(--accent)}
+#briefView .ma-analysis p{font-size:13px;line-height:24px;margin:0;color:var(--text)}
+#briefView .ma-question{display:grid;grid-template-columns:64px minmax(0,1fr) 16px;gap:14px;align-items:start;width:100%;text-align:left;margin:0;padding:14px 20px;border:0;border-bottom:1px solid var(--line);background:var(--ma-question-bg);color:var(--ma-link);font:inherit;font-size:13px;line-height:22px;cursor:pointer;border-radius:6px}
+#briefView .ma-question{--ma-link:#8ab4ff;--ma-link-hover:#b4ceff;--ma-question-bg:#2563eb14;--ma-question-hover:#2563eb26}
+.light #briefView .ma-question{--ma-link:#2563eb;--ma-link-hover:#1d4ed8;--ma-question-bg:#f5f8ff;--ma-question-hover:#eaf1ff}
+#briefView .ma-question>span,#briefView .ma-question>.icon{color:inherit}
+#briefView .ma-question:hover{background:var(--ma-question-hover);color:var(--ma-link-hover)}
+#briefView .ma-question:hover>span:nth-child(2){text-decoration:underline;text-underline-offset:3px}
+#briefView .ma-question:focus-visible{outline:2px solid var(--ma-link);outline-offset:3px;background:var(--ma-question-hover)}
+#briefView .ma-question:active{background:var(--ma-question-hover);color:var(--ma-link-hover)}
+.ma-question-label{font-size:12px;font-weight:500}.ma-question .icon{width:15px;height:15px;margin-top:3px}
+.ma-stock-link:focus-visible,.ma-source:focus-visible,.ma-question:focus-visible,.ma-return:focus-visible,.ma-context summary:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+.ma-answer{font-size:13px;line-height:1.8;overflow-wrap:anywhere}
+.ma-answer h3{font-size:14px;font-weight:600;margin:22px 0 8px;color:var(--text)}
+.ma-answer p{margin:8px 0;color:var(--muted)}
+.ma-answer .ma-conclusion{padding:14px 16px;background:var(--accent-soft);border-radius:8px;margin-top:18px}
+.ma-answer .ma-conclusion h3{margin:0 0 6px;color:var(--accent)}
+.ma-answer .ma-conclusion p{color:var(--text);margin:0}
+.ma-context{border-bottom:1px solid var(--line);padding:10px 0}.ma-context summary{cursor:pointer;color:var(--muted);font-size:12px}
+.ma-evidence-wrap{max-width:100%;overflow-x:auto}
+.ma-evidence{width:100%;border-collapse:collapse;font-size:11px;line-height:1.7;table-layout:fixed}
+.ma-evidence caption{text-align:left;font-size:11px;color:var(--muted);margin-bottom:8px}
+.ma-evidence th,.ma-evidence td{padding:9px 6px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;overflow-wrap:anywhere}
+.ma-evidence th{color:var(--muted);font-weight:500}
+.ma-answer-note{padding-top:16px;border-top:1px solid var(--line);margin-top:22px!important}
+.ma-return{display:inline-flex;gap:8px;align-items:center;color:var(--accent);padding:10px 0;background:none;border:0;cursor:pointer;font-size:12px}
+.ma-return .icon{width:14px;height:14px}
+.ma-source-detail{font-size:14px;line-height:1.8}.ma-source-detail h3{margin:18px 0 8px}.ma-quote-empty{padding:36px 16px;text-align:center;color:var(--muted)}
+@media(max-width:850px){#briefView .ma-analysis>div{grid-template-columns:1fr;gap:4px}#briefView .ma-question{grid-template-columns:minmax(0,1fr) 16px;gap:6px}#briefView .ma-question-label{grid-column:1/-1}#briefView .ma-section-head{align-items:flex-start}#briefView .ma-section-head>span{white-space:nowrap}}
